@@ -1,0 +1,89 @@
+Zum Aufbau der Logdatei:
+========================
+
+Eine Zeile der Logdatei besteht aus einem "Tag" und der eigentlichen
+Kommandozeile. 
+Das Tag ist in spitze Klammern eingeschlossen und enthält Listen von
+Zahlen ("IDs"), die beschreiben, welche Datensätze von dem Kommando
+modifiziert werden ("OpIDs"), und ggf. von welchen anderen IDs die
+OpIDs nach der Ausführung des Kommandos abhängen ("DepIDs").
+Zusätzlich wird noch angezeigt, wenn das Kommando die OpIDs erzeugt
+(*IDs*) oder löscht (+IDs+).
+
+Folgende Schreibweisen sind erlaubt:
+
+ID : eine (nicht-negative) integer-Zahl 
+IDs: ID | ID-ID | IDs,ID | IDs,ID-ID
+OpIDs: IDs | *IDs* | +IDs+ | OpIDs;IDs | OpIDs;*IDs* | OpIDs;+IDs+
+DepIDs: IDs
+Tag: OpIDs | OpIDs:DepIDs
+
+Die Kommandos entsprechen dem shell-Aufruf, nur werden die dabei angegebenen
+IDs jeweils ersetzt durch "$ID". 
+
+Beispiel für Zeilen:
+
+ID 1 wird erzeugt:         <*1*>	dsl hallo::dat    
+ID 1 wird verändert:       <1>		dssc -y "y*5" $1
+ID 1 wird verändert,
+in Abhängigkeit von ID 2   <1:2>	dsadd $1 $2
+ID 1 wird gelöscht         <+1+>        dsrm $1
+
+kompliziertere Beispiele: 
+
+<*3*:1,2>	       dsadd -o summe $1 $2
+<1;*2*:1>	       dsft -ri $1
+<*1-10*>	       dsl kennli::alle
+
+Das Registrieren:
+=================
+
+Beim Registrieren werden alle Operationen, die die zu registrierende
+ID betreffen, aus der Logdatei in eine dsh-Datei umgeschrieben.  Der so
+gefundene Satz von Kommandozeilen erhält einen Namen. 
+
+Wird bei einer relevanten Operation ein anderer Datensatz ebenfalls
+manipuliert (weitere OpIDs), oder wird für die Operation ein weiterer
+Datensatz benutzt (es gibt DepIDs), so sind auch deren IDs in die
+Liste der zu registrierenden IDs aufzunehmen.
+
+Daher werden in einem ersten Durchlauf alle Tags analysiert und eine
+Liste der zu berücksichtigenden IDs aufgestellt. In einem zweiten
+Durchlauf werden dann jene Kommandozeilen aus der Logdatei extrahiert,
+bei denen diese IDs in den OpIDs vorkommen.
+
+Man registriert also unter einem Namen im allgemeinen einen ganze
+Reihe von Datensätzen. Möglicherweise gibt es auch eine Reihe von
+temporär erzeugten Datensäzen, d.h. solche, die zum Ausführen der
+Kommandos benötigt, dann aber gelöscht werden.
+
+Die in den Kommandozeilen vorkommenden ID-Variablen ("$ID") werden
+beim Erstellen des dsh-Eintrags umnummeriert, so dass alle IDs von 1
+beginnend aufeinander folgen. Dabei werden die temporären IDs an das
+Ende gesetzt und die Liste der verbleibenden IDs hinter dem Namen in
+die dsh-Datei geschrieben.
+
+Die Kommandozeilen werden dann in einen {}-Block gesetzt; jede Zeile
+beginnt mit Tab-Einzügen. Bei Kommandozeilen, die neue IDs erzeugen,
+stehen am Anfang der Zeile noch die Liste der entsprechenden
+ID-Variablen.
+
+Beispiel für einen dsh-Eintrag:
+
+  hallo (1,2) {
+  1,2	      dsl anderesdsh::zwei_Messungen
+	      dssc -y "y*10" $1
+  3  	      dssc -n temp -y "sin(10*x)"
+	      dsadd $2 $3
+	      dsrm $3
+  }
+
+      
+Das Laden:
+==========
+
+Unter Angabe des Namens und der dsh-Datei können dann jeder Zeit die
+registrierten Daten reproduziert werden, indem die Komandozeilen
+erneut ausgeführt werden. Dabei sind natürlich die ID-Variablen durch
+die während der Laufzeit vergebenen neuen IDs zu ersetzen. 
+

@@ -1,0 +1,5 @@
+part of the source of the programm qpl
+
+qpl can be used to diplay data loaded bei dload into shared memory segments.
+The data are manipulated by a series of programs to be writen. qpl is just the graphical part 
+of this data manipulation tools.

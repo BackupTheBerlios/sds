@@ -1,0 +1,13 @@
+Das Makefile wurde jetzt etwas schlauer,
+wer qt2 haben will, muss dafür sorgen, dass die Variable QTDIR
+richtig gesetzt ist:
+
+export QTDIR=/usr/lib/qt2
+
+der Rest sollte dann jetzt von selber funktionieren (insbesondere für
+alte Distributionen, wo nur qt1 vorhanden ist).
+
+Es kann das Problem auftauchen, dass das Programm moc nicht gefunden 
+wird.  Dann muss das Verzeichnis, in dem es zu finden ist (z.B. mit 
+"locate bin/moc") in die Pfadvariable (PATH) aufgenommen werden. 
+
