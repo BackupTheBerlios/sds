@@ -1,0 +1,31 @@
+
+This archive includes the following files
+    fft_mayer.c    = my fft routines
+    trigtbl.h      = A fast trig function generator
+    time_mayer.c   = a test program for my fft/ifft
+    time_r_mayer.c = a test program for my real valued fft/ifft
+
+    fft_duhamel.c  = "a duhamel-holman split radix dif fft"
+    time_duhamel.c = a test program the above fft
+
+    test_mayer.c   = tests the fft
+    test_duhamel.c = tests the fft
+
+    summary.sparc  = results of many different ffts using gcc on a sparc
+    compare_ffts   = script to run time_* for a variety of sizes
+
+    Makefile       = creates the test programs
+
+The test programs created are
+    time_mayer   [optional-number-of-points]
+    time_duhamel [optional-number-of-points]
+which should run each fft and ifft a bunch of times and display the results
+and
+    test_mayer
+    test_duhamal
+which should output the same results and confirm that both work correctly.
+
+
+
+Please see fft_mayer.c for copyright info.
+
