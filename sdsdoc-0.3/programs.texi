@@ -178,6 +178,7 @@ analyzes the log file (@pxref{Log/reg/load Mechanism}).
 * dsfunc::       Make @math{y(x)} a function
 * dseinige::     Reduce density of data
 * dsadd/dsmul::  Add or multiply datasets
+* dsxy::         Combine two datasets
 * dsint::        Simple integration
 * dsfilter::     Simple filtering
 * dshist::       Compute histograms
@@ -228,6 +229,12 @@ analyzes the log file (@pxref{Log/reg/load Mechanism}).
 @pindex dsmul
 @cindex Add or multiply datasets
 @include programs/dsaddmul.texi
+
+@node dsxy
+@subsection @code{dsxy}
+@pindex dsxy
+@cindex Combine two datasets
+@include programs/dsxy.texi
 
 @node dsint
 @subsection @code{dsint}
