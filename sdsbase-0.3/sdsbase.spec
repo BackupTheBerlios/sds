@@ -49,6 +49,7 @@ make install
 /usr/local/bin/dsaco
 /usr/local/bin/dscat
 /usr/local/bin/dseinige
+/usr/local/bin/dspad
 /usr/local/bin/dsdeglitch
 
 /usr/local/bin/dsstat
