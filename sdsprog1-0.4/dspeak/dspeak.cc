@@ -189,7 +189,7 @@ static struct option const long_options[] =
 	{0, 0, 0, 0}
 };
 
-char verstring[] = "$Id: dspeak.cc,v 1.1 2003/01/23 15:12:07 vstein Exp $";
+char verstring[] = "$Id: dspeak.cc,v 1.2 2003/07/08 14:06:57 vstein Exp $";
 
 extern char *program_invocation_short_name;
 
@@ -782,7 +782,6 @@ void fitit(const char *idstr, integer iopt, integer itera,
 			}
 			i=1;
 			fitfunc_(&i,&newn,&n,x,ys,NULL,NULL);
-			free(yuse);
 			for(i=0;i<newn;i++)
 				ys[i]*=sigma(xs[i]);
 		} else {                       // REP_MODE & ~RES_MODE
