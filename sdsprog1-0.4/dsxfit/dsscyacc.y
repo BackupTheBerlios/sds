@@ -1,6 +1,7 @@
 %{
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include "dssc.h"
 
 char bef[500];
@@ -42,6 +43,7 @@ int yylex( void );
 
 %%
 	line: exp
+                ;
 
 	exp: T_DOUBLE { cons[ci++] = $1; bef[bi++]=Y_PUT; }
 		| exp '+' exp { bef[bi++]=Y_PLUS; }
