@@ -3,10 +3,13 @@ CXX=g++
 CPPFLAGS= -Wall -D_GNU_SOURCE -g -I$(INCLUDE_DIR)
 #LDFLAGS= -g 
 LDFLAGS= -g -L$(LIB_DIR)
-LOADLIBES= -lm -lfl -lsd
+LOADLIBES= -lm -lfl -lsd -lstdc++
 
-YACC= bison 
-YFLAGS= -d -y -pdsdel_yy
+# problem with bison V1.75
+#YACC=bison
+YACC=yacc
+#YFLAGS= -d -y -pdsdel_yy
+YFLAGS= -d -pdsdel_yy
 LEX= flex
 LFLAGS= -Pdsdel_yy
 
