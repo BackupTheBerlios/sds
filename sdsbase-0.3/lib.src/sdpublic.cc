@@ -8,6 +8,7 @@
 #include <linestyle.h>
 #include <symbolstyle.h>
 #include <stdarg.h>
+#include <string.h>
 
 void fatal(const char *templ, ...);
 

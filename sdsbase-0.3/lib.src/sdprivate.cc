@@ -1,4 +1,5 @@
 #include "SharedData_pub.h"
+#include <string.h>
 
 void SharedData::format(const char *name)
 {

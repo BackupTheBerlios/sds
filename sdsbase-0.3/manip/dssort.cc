@@ -2,6 +2,7 @@
 #include <getopt.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <string.h>
 
 static struct option const long_options[] = {
 	{"help",        no_argument,       0, 'h'},

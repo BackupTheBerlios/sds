@@ -1,7 +1,7 @@
 /* 
  * $Author: vstein $ 
- * $Revision: 1.1 $
- * $Id: color.h,v 1.1 2003/01/23 14:50:49 vstein Exp $
+ * $Revision: 1.2 $
+ * $Id: color.h,v 1.2 2004/02/08 21:07:42 vstein Exp $
 */
 
 #ifndef _COLOR_H
@@ -9,6 +9,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct RGBColor {
 	unsigned char r,g,b;
