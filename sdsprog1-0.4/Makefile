@@ -13,6 +13,7 @@ all:
 	$(MAKE) -C dscf
 	$(MAKE) -C dsxfit
 	$(MAKE) -C dsdydx
+	$(MAKE) -C dsxy
 
 tar: 
 	rm -rf $(SDSPROG).tar.gz
@@ -22,7 +23,7 @@ tar:
 				 $(SDSPROG)/dswl $(SDSPROG)/dsmul\
 				 $(SDSPROG)/dspeak\
 				 $(SDSPROG)/dsadd $(SDSPROG)/dsft\
-				 $(SDSPROG)/dscf\
+				 $(SDSPROG)/dscf $(SDSPROG)/dsxy\
 				 $(SDSPROG)/dsxfit $(SDSPROG)/dsdydx)
 
 
@@ -37,6 +38,7 @@ clean:
 	$(MAKE) -C dscf clean
 	$(MAKE) -C dsxfit clean
 	$(MAKE) -C dsdydx clean
+	$(MAKE) -C dsxy clean
 	rm -f *~
 
 progs:
@@ -50,6 +52,7 @@ progs:
 	$(MAKE) -C dscf
 	$(MAKE) -C dsxfit
 	$(MAKE) -C dsdydx
+	$(MAKE) -C dsxy
 
 
 redo: clean progs
@@ -65,6 +68,7 @@ install:
 	$(MAKE) -C dscf install
 	$(MAKE) -C dsxfit install
 	$(MAKE) -C dsdydx install
+	$(MAKE) -C dsxy install
 
 tmp-install:
 	$(MAKE) -C dsspline tmp-install
@@ -77,6 +81,7 @@ tmp-install:
 	$(MAKE) -C dscf tmp-install
 	$(MAKE) -C dsxfit tmp-install
 	$(MAKE) -C dsdydx tmp-install
+	$(MAKE) -C dsxy tmp-install
 
 
 copy: tar
