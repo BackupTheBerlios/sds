@@ -3,7 +3,7 @@ CXX=g++
 CXXFLAGS=-Wall -D_GNU_SOURCE -g -I$(INCLUDE_DIR)
 #LDFLAGS=-g
 LDFLAGS=-g -L$(LIB_DIR)
-LOADLIBES=-lm -lfl -lsd
+LOADLIBES=-lm -lfl -lsd -lstdc++
 
 INCLUDE_DIR=../include
 #LIB_DIR=
