@@ -1,0 +1,8 @@
+The program @command{dsint} offers a simple way to integrate a
+dataset.  The data is assumed to be sorted.  The integral is
+calculated by summing up of the trapezoid contributions.  It can be
+limited to a given range of x-values:
+
+@example
+dsint [-i @var{min}] [-a @var{max}] ID(s)
+@end example

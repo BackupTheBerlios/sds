@@ -1,0 +1,16 @@
+Frequently, it is implicitly assumed that the x- and y-array of a
+dataset describes a function @math{y(x)}.  This means that for each
+x-value there is a unique y-value.  The command @command{dsfunc} makes
+sure that this is the case:
+
+@example
+dsfunc ID(s)
+@end example
+
+@command{dsfunc} only checks whether adjacent elements of the x-array
+are equal, so the datasets must be sorted.  If there are several
+datapoints with the same x-value, they are replaced by a single point
+the y-value of which is the average of those of the original
+datapoints.  The physical size of the dataset is not reduced, since
+this operation usually concerns only a small number of points. 
+

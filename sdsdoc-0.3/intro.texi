@@ -1,0 +1,117 @@
+@node Intro
+@chapter Introduction
+
+The first part of this documentation tries to give a gentle
+introduction to the use of the sds-packages. This suite of programs
+was developed for the visualization of two-dimensional data and for
+the efficient management of their computational evaluation.
+
+The project was started because we didn't find an existing linux-based
+program to fit our needs, especially concerning the desire to use some
+non-standard techniques particular to the measurements of mesoscopic
+phenomena. It started out as an adaption of the previously used
+xpl-program (@pxref{History}) to the `modern' linux system provided by
+the SuSE distribution.
+
+In its current version it consists of the QT-based (see
+@uref{http://www.trolltech.com}) visualization tool @command{qpl} and
+a set of data manipulation programs (named @command{ds@dots{}}) that
+access a common data segment.  An additional log scheme provides an
+efficient way to keep track of the evaluations performed.  Most of the
+numerical methods use freely available FORTRAN routines.  To produce
+data plots in Postscript, qpl also offers an interface to the
+@command{pspl} program.
+
+@menu
+* Summary::  Executive style
+* Authors::  Who did this?
+* License::  Some words on GPL
+* History::  How it started
+@end menu
+
+@node Summary
+@section Summary
+
+What should sds be used for?
+
+@table @asis
+@item visualization
+   represent data in a 2D graph with the ability to zoom, shift
+viewport; plot many datasets, using different colors, symbols and
+layers
+
+@item versatile manipulation
+   perform simple scaling operations or programm your own fit
+function; process many datasets simultaneously, using the standard
+command shell
+
+@item efficient documentation
+   transparently record the sequence of manipulations, not just the
+final result 
+@end table
+
+@node Authors
+@section Authors
+
+Roland Sch@"afer, the author of xpl, wrote the key parts of the sds
+system, the plotting routines of qpl and the data model and memory
+management of the sd library, and also adapted the FORTRAN
+routines. The concepts for the data management and the protocol
+mechanism were developed in a series of design sessions by Roland
+Sch@"afer and Peter vom Stein. The latter then implemented most of the
+log/dsh part. The rest of the ds-programs were (re-)written on an
+as-needed basis by both of them, with a lot of input from Bernhard
+Limbach and Christoph Wallisser.
+
+This documentation is written by Peter vom Stein.
+
+@node License
+@section License
+
+All programms are distributed under the GNU Pulbic License (GPL)!
+
+@node History
+@section History
+
+In the beginning was xpl, written in the early 90's (?) by Roland
+Sch@"afer while at Cologne University. It used gnuplot for visualization
+and offered a batch mechanism to automate data evaluation. The data
+files had to be converted to a binary format, a practical necessity
+when working on a PC then. The binary files were also used to store
+the evaluation history. The manipulations were carried out
+interactively on a command prompt provided by xpl.
+
+He later wrote an additional program, xg, to monitor the ongoing
+measurements on an X display. The advent of the QT library with its 
+SIGNAL/SLOT mechanism promised an easier way to extend this work to
+the data evaluation. And thus qpl was created.
+
+ We quickly realized the advantage of abandoning xpl's `monolithic'
+approach to data manipulation and started to build a suite of smaller
+programs to use the standard Unix shell as the command shell.
+
+In its first implementation, shared memory (@pxref{Memory
+Subsystem,,,libc,The GNU C Library Reference Manual}) was used to
+store the data. Semaphores controlled the sequential access by the
+different programs.  Every step was documented in a dsh-file (`data set
+history') on a per-dataset basis.  This first working version (0.1) was
+used for real-life data evaluation, with most of the current
+`ds...'-programs in place.
+
+Soon, a number of shortcomings became apparent that required some
+radical changes, implemented in version 0.2.  The memory management is
+now based on `mmap' (@pxref{Memory-mapped I/O,,,libc,The GNU C Library
+Reference Manual}).  Thus, the data segment looks just like a regular
+file to the user.  For an efficient organization of the data segment,
+the code of `malloc' (@pxref{Unconstrained Allocation,,,libc,The GNU C
+Library Reference Manual}) was adopted (Free Software is a good
+thing!).  The individual steps taken to manipulate the data are
+recorded in a central log-file.  The mechanism to store and reload a
+specific evaluation is described later in this documentation (*see
+data-I/O).
+
+So far, this re-implementation turned out to be rather practical.
+Apart from bug fixes, the main change to version 0.3 was the
+implementation of a CVS repository.  Also, the libraries are now shared
+(@file{.so}).
+

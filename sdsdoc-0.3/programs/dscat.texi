@@ -1,0 +1,9 @@
+The small program @command{dscat} concatenates multiple datasets,
+creating a new dataset.  Usage:
+
+@example
+dscat ID(s)
+@end example
+
+The new ID is printed on standard output, in the format @code{new
+id=@var{id}}.  The new x- and y-array are not sorted. 

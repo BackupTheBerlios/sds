@@ -1,0 +1,28 @@
+The program @command{colxy} reads multicolumn data, i.e. numbers, from
+standard input and filters out two columns.  This tool does not make
+use of the central data segment.  Because of its general usefulness,
+it is nontheless included in the @code{qplbase} package. Usage:
+
+@example
+colxy [options] [-x @var{n}] [-y @var{n}]
+@end example
+
+The options are:
+@table @code
+@item -i @var{file}
+@itemx --input=@var{file}
+Read input data from @var{file} instead of standard input.
+@item -o @var{file}
+@itemx --output=@var{file}
+Write outpu data to @var{file} instead of standard output.
+@item -x @var{n}
+@itemx --x=@var{n}
+Take x-values from the @var{n}-th column.  The default is @var{n}=1.
+@item -y @var{n}
+@itemx --y=@var{n}
+Take y-values from the @var{n}-th column.  The default is @var{n}=2.
+@item -p @var{n}
+@itemx --precision=@var{n}
+Set the precision of the floating point output.  @xref{dss/dsd}, for
+the finer points. 
+@end table

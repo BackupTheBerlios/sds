@@ -1,0 +1,238 @@
+@node Least Square Fit
+@subsection Non-linear Least Sqare Fit
+
+The fit routine applied for the non-linear least square fits is a
+variant of the Levenberg-Marquardt algorithm.  The fit programs
+provide a function (and, if possible, its derivatives) that depends on
+a set of parameters, and the FORTRAN fit routine uses an iterative
+method to find the parameter values that match the given data best.  A
+very good description of the algorithm is given in the FORTRAN source
+code (file @file{approx/dnls1.f} in the @code{qplfortranlibs}
+package), and the programs @command{dswl} or @command{dsfit} provide
+well-commented implementations.
+
+An important aspect of the fit programs is the control of the fit
+parameters.  You can choose if a parameter is to be varied by the fit
+routine or if it should be kept at a fixed value.  In fact, the fit
+procedure often runs more stable if not all parameters are adjusted at
+the same time.  For these intricate manipulations, the programs offer
+an interactive mode, which is described in the next section. 
+
+Another set of command line options can be used to fine-tune the fit
+procedure.  There exact purpose is adequately described in the source
+files mentioned above.  The options common to the different fit
+programs are:
+
+@table @code
+@item --@var{param}=@var{value}
+Set the fit parameter @var{param} to @var{value} and keep it fixed.
+@item --@var{param}?=@var{value}
+Initialize the fit parameter @var{param} with @var{value} and let the
+fit routine optimize it. 
+@item -i
+@itemx --min
+Minimum x-value of the fit interval.
+@item -a
+@itemx --max
+Maximum x-value of the fit interval.
+@item -n
+@itemx --NoP
+Number of points for the fit curve.  A value of -1 (the default)
+indicates to use the same x-values as the underlying data.
+@item -f
+@itemx --ftol
+Termination criterion: sum of squares.
+@item -x
+@itemx --xtol
+Termination criterion: relative error between susequent iteration
+steps.
+@item -g
+@itemx --gtol
+Termination criterion: orthogonality.
+@item -t
+@itemx --itera
+Maximal number of iteration steps. 
+@item -m
+@itemx --sigma
+Statistical weight of the input data, @xref{Sigma}.
+@item -c
+@itemx --interactive
+Enter interactive mode, @xref{Interactive}.
+@item -R
+@itemx --replace
+Don't create a new dataset for the fit curve but replace the original
+data.
+@item -r
+@itemx --residuum
+Instead of the fit curve, calculate the difference between the fit and
+the original data. 
+@end table
+
+Like most of the programs in the qpl packages, the fit programs are
+called by providing, besides the options, a list of IDs that are to
+be treated, one by one, by the fit routine:
+
+@example
+@var{program} [options] ID(s)
+@end example
+
+@node Interactive
+@subsection Interactive Mode
+
+When you run the fit programs in interactive mode (using the @code{-c}
+option), you are presented with a command prompt, indicated by
+@code{>}.  In addition, the program prints some statistical
+information and the current status of the fit parameters.  You can
+enter commands at the prompt, which are explained below.  The input
+can be edited, and you can access a command history (@pxref{Top,GNU
+Readline Library,,readline,The GNU Readline Library}).  On hitting
+@key{RET} to complete the command line, the command statements are
+interpreted and a call to the fit routine is performed.
+Multiple commands, separated by @kbd{;}, can be given on one line.
+
+Furthermore, the fit program starts a separate qpl window as
+a graphical interface.  There, the original data is shown (on plotlevel
+99), on top of the calculated fit curve (in gray on plotlevel 98).
+
+Most interactive commands are simmilar to the corresponding command
+line options, @xref{Least Square Fit}.  For some, several spellings
+are accepted (in case of doubt, have a look at the corresponding
+@code{lex}-file).  These commands are common to all fit programs:
+
+@table @code
+@item @var{param}=@var{value}
+Set the fit parameter @var{param} to @var{value}. 
+@item @var{param}=?
+Let the fit routine optimize the parameter @var{param}.
+@item @var{param}==
+Keep the parameter @var{param} fixed at its current value.
+@item min=@var{x}
+@itemx max=@var{x}
+Set the range of x-values used for the fit.
+@item N=@var{num}
+@itemx NoP=@var{num}
+Use @var{num} points for the fit curve.
+@item ftol=@var{y} 
+@itemx xtol=@var{y} 
+@itemx gtol=@var{y} 
+Set the corresponding termination criterion for the fit routine.
+@item itera=@var{n}
+@itemx maxitera=@var{n}
+Limit the number of iterations.
+@item S=@var{y}
+@itemx sigma=@var{y}
+@itemx sigma=@var{expr}
+Set the statistical weight of the data to @var{y}.  Sigma can also be
+given different values on different x-intervals, using the third
+variant.  For the syntax of the corresponding expression,
+@xref{Sigma}.
+@item tr
+@itemx toggle_residuum
+Display the difference between fit and data, instead of the fit
+curve.  This concerns only the graphical representation in the
+@command{qpl} window.
+@item ok
+@itemx accept
+Terminate the fit program and produce a dataset containing the fit
+curve with the current values of the fit parameters.
+@item abort
+Terminate the fit programs and discard all results.
+@item res
+@itemx residuum
+Terminate the fit program, as with @code{ok}, but compute the
+difference between the original data and the fit curve.
+@item rep
+@itemx replace
+Terminate the fit program, as with @code{ok}, but replace the original
+dataset with the fit results.
+@item res; rep
+Terminate the fit program, combining the action of both commands.
+@end table
+
+Special measures are taken to gracefully handle interruptions
+(i.e. the SIGINT signal, usually bound to @kbd{C-c}).  During
+execution of the actual fit routine -- which in some cases might loop
+for too long a time -- @kbd{C-c} (Control-C) brings you back to the
+fit program's command prompt so that you can try to adjust the
+parameters with more success.  Typing @kbd{C-c} at the prompt
+terminates the program completely, closing the qpl window, removing
+the temporary datasets, and assigning the original plotlevels.   
+
+@node Sigma
+@subsection Weighing Data
+
+The parameter @code{sigma} is used by the fit routines to specify the
+inverse weight of a data point, so that data with a larger error bar
+contributes less to the least square fit or the spline interpolation.
+In fact, the error calculated for the fit parameters by the non-linear
+least square fit routine is meaningful only if you set an appropriate
+sigma value. 
+
+Sigma can be given as a single number, valid for all data points:
+@example
+sigma=@var{y}
+@end example
+The default value is 1.  In a first approximation, @var{y} should be
+set to the standard deviation of the data. 
+
+Alternatively, a sequence of sigma values can be specified for certain
+x-values.  For each given x-value, there is a left and right limit,
+and a central value.  In between these fixed points, the sigma value
+is interpolated linearly.  Thus, you can define a sigma function
+consisting of peace-wise linear segments. A special syntax is used for
+this:
+@example
+sigma=(x_0,s_0)[(x_1,s_1)...]
+@end example
+
+While the x-value is given as a single number, the sigma value
+consists of up to three values, corresponding to the left limit
+@math{l}, the exact value @math{e} and the right limit @math{r},
+separated by @samp{|}.  Any of @math{l}, @math{e} or @math{r} can be
+left out. Their value is then linearly interpolated.  The following
+table lists all possible declarations.  The term `@math{@r{sigma}(x)}'
+means that the value is calculated from the sigma values previously
+defined.  Consecutive assignments of sigma following this syntax are
+added to the definition of the sigma function.  To reset the value of
+sigma, enter @code{sigma=1}.  To remove a certain point from the sigma
+definition, you specify the x-value with no sigma value.
+
+@table @code
+@item (x,a)    
+@math{l=e=r=a}
+
+@item (x,a|)   
+@math{l=a ; e=r=@r{sigma}(x)}
+
+@item (x,|a)
+@math{r=a ; l=e=@r{sigma}(x)}
+
+@item (x,|a|)
+@math{e=a ; l=r=@r{sigma}(x)}
+
+@item (x,a||b)
+@math{l=a ; r=b ; e=@r{sigma}(x)}
+
+@item (x,a|b|)
+@math{l=a ; e=b ; r=@r{sigma}(x)}
+
+@item (x,|a|b)
+@math{e=a ; r=b ; l=@r{sigma}(x)}
+
+@item (x,a|b)
+@math{l=a ; r=b ; e=(a+b)/2}
+
+@item (x,a|b|c)
+@math{l=a ; e=b ; r=c}
+
+@item (x,)
+delete previous setting for value @math{x}.
+@end table
+
+So, @code{sigma=(-1,1|3|3)(0,3|5)(1,1)} means that sigma is 1 for
+@math{x<-1}, has a value of 3 between @math{-1} and 0, where it jumps
+to 5 (sigma is 4 for @math{x=0}) and then goes linearly back to 1 for
+@math{x=1}.
+
+
+

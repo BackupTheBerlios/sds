@@ -1,0 +1,53 @@
+The program @command{dsg} serves some rather peculiar purposes when
+viewed in the context of the whole qpl suite.  Historically, though,
+it was one of the first applications for @command{qpl}.  Usage:
+
+@example
+dsg [-p @var{n}] [-i @var{name}]
+@end example
+or
+@example
+dsg [-p @var{n}] [-P @var{data}]
+@end example
+or
+@example
+dsg [-p @var{n}] [-e @var{command}]
+@end example
+
+The first variant creates a dataset without writing an entry in the
+log file.  The second call to @command{dsg} can be used to create a
+regular dataset by specifying the data on the command line.  This is
+of course only practical for datasets consisting of just a few points
+(e.g. when constructing a `guide to the eye') that do not necessarily
+need a source file to be loaded from.  In the third variant,
+@var{command} is executed, and its standard output is processed in the
+usual way by @command{dsg}.  This action is also documented in the
+log file. 
+
+The options are in detail:
+@table @code
+@item -p @var{n}
+@itemx --plotlevel=@var{n}
+Set the plot level of the dataset to @var{n}. 
+@item -i @var{file}
+@itemx --input=@var{file}
+Read data from @var{file} instead of from standard input.  This
+actually corresponds to combining @command{dsl} with @command{dslog}. 
+@item -P @var{data}
+@itemx --points=@var{data}
+Put the given @var{data}, a space-separated list of pairs of x- and
+y-values (e.g. @code{"0 1 1 2"}), into a dataset.
+@item -e @var{command}
+@itemx --exec=@var{command}
+Execute the @var{command}, the output of which is interpreted as data
+and stored in a dataset.  Everything following the @code{-e} switch is
+treated as the @var{command}, so you don't have to enclose a
+multi-word command in quotes. 
+@end table
+
+One common application of @command{dsg} is to monitor a continously
+growing data file, e.g. documenting an ongoing measurement.  In that
+case, you could call @code{tail -f @var{file} | dsg}.  To avoid
+delays, you should make sure that @var{file} is written to in line
+buffered mode (@pxref{Stream Buffering,,,libc,The GNU C Library
+Reference Manual}). 

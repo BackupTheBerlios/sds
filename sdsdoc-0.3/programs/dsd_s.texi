@@ -1,0 +1,32 @@
+The programs @command{dss} and @command{dsd} (which are in fact links
+to the same file, @file{dsd_s}) are used to write data from the common
+data segment (the sdf-file) to a plain text (ASCII) or a binary file,
+respectively.  Usage:
+
+@example
+dss [options] ID(s)
+dsd [options] ID(s)
+@end example
+
+The options are:
+@table @code
+@item -s
+@itemx --save
+Use the ASCII format.
+@item -d
+@itemx --dump
+Use the binary format.
+@item -p @var{n}
+@itemx --prec=@var{n}
+Specify precision of ASCII output, i.e. print @var{n} decimal places.
+If @var{n} is 0, use the @code{%a} format string (@pxref{Floating-Point
+Conversions,,,libc,The GNU C Library Reference Manual}).  The default
+is @var{n}=6.
+@item -o @var{file}
+@itemx --output=@var{file}
+Specify the file to write to (@var{file} is created or overwritten, no
+checks!).  If this option is omitted, the datasets are written to
+standard out.
+@end table
+
+

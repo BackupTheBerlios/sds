@@ -1,0 +1,35 @@
+In dealing with noisy data, one sometimes wants to apply a filtering
+operation.  The program @command{dsfilter} implements a simple
+exponential low-pass filter with a given time-constant @var{tc}.  It is
+assumed that the x-values are acquired at a constant sweep rate
+@var{r}.  The x-array should be sorted in ascending order.  Usage:
+
+@example
+dsfilter -t @var{tc} -r @var{r} [-u|-d] ID(s)
+@end example
+
+Explanation of the options:
+
+@table @code
+@item -t @var{tc}
+@itemx --T_c=@var{tc}
+The time constant @var{tc} is assumed to be specified in seconds.
+@item -r @var{r}
+@itemx --rate=@var{r}
+The sweep rate in x-units per hour.
+@item -u
+@itemx --up
+The filter operation is performed from small x-values to large
+x-values (the default).
+@item -d
+@itemx --down
+Inverse to @code{-u}.
+@end table
+
+This operation is modeled after a typical situation in data
+acquisition:  an x-parameter is varied slowly (on the scale of hours),
+with the filter's time constant given in seconds.  To get rid of
+these conversions, set @math{@var{r}=3600} and supply @var{tc} in
+[x].
+ 
+

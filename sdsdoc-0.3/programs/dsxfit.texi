@@ -1,0 +1,30 @@
+With @command{dsxfit}, you can fit an (almost) freely defined function
+to your data.  It combines the function parser of @command{dssc} with
+the non-linear least square fit routine.  As a matter of fact,
+@command{dsxfit} started out as a hack to see how far one could go
+with the concept of the fit programs.  The result works amazingly
+well, although one should use it cautiously.  For example, the fit
+parameters should be properly initialized (the default value is always
+0).  Naturally, the derivative of the fit function is not given, so
+the forward-differencing method is used.
+
+The fit function is specified on the command line with @code{-y
+@var{expr}} (or the long option @code{--function=@var{expr}}), and in
+interactive mode with @code{func[tion]=@var{expr}} (you can use this
+also to re-define the function).  The function definition @var{expr}
+can contain the same elements as in the case of @command{dssc} (see
+@pxref{dssc}), @emph{except} for: @code{y}, @code{x[@var{j}]},
+@code{y[@var{j}]}, @code{i}, @code{N}, @code{rand()}, @code{xmin},
+@code{xmax}, @code{ymin}, and @code{ymax}, which are not easily
+adapted to the fit routine.
+
+In addition, the fit parameters have to be given as single capital
+letters (@code{A}--@code{Z}; in interactive mode, you can also use
+lower-case) in @var{expr}.  You don't have to keep them in any order
+(e.g. start with @code{A}); a typical program call could be
+
+@example
+dsxfit -c --W=1 --A=1 -y "A*exp(-(x-X)/W)+Y" @var{id}
+@end example
+
+with the four parameters @code{A}, @code{X}, @code{W}, and @code{Y}. 

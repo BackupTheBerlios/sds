@@ -1,0 +1,58 @@
+If a dataset is created by @command{dsl}, the first two of the set's
+ident-strings are used to store some information on the data's
+origin.  The first string contains a short version of the name of the
+source or dsh-file, a verbose version is written in the second string.
+With the command @command{dsn} you can access the various components
+of these name strings.  This can be useful e.g. if you want to
+construct file names out of them in a canonical way.  Usage:
+
+@example
+dsn [options] ID(s)
+@end example 
+
+There are only a few options:
+
+@table @code
+@item -f @var{string}
+@itemx --format=@var{string}
+Format the output according to the pattern given in @var{string} (see
+below).  The default value is @code{%n}.
+@item -v
+@itemx --verbose
+Print verbose information on the parsing process.
+@end table
+
+In a fashion simmilar to the formatted printing in C, the output of
+@command{dsn} follows the rules given in the format string: any
+characters not preceded by @code{%} are printed as-is (escape
+sequences like @code{\n} are not supported).  The following patterns
+are interpreted:
+
+@table @code
+@item %p
+the pathname of the source file or the dsh-file
+@item %n 
+the name of the source file or the dsh-file
+@item %v
+the name (version) of the dsh-entry
+@item %i
+the sub-id of the dsh-entry
+@item %x
+the x-column loaded from the source file
+@item %y
+the y-column loaded from the source file
+@item %b
+@itemx %e
+basename and extension, if the file name looks like %b.%e
+@item %%
+a literal @code{%}
+@end table
+
+To give an example, I frequently use the following loop to store the
+results of an evaluation in separate dsh-files:
+
+@example
+for i in `dsf` ; do 
+  dsreg -n result -o `dsn -f dsh/%n $i` $i ;
+done
+@end example

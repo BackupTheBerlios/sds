@@ -1,0 +1,37 @@
+The program @command{dspad} increases the size of the given datasets
+and fills the new part of the y-array with zeros.  As this is a common
+operation in connection with the Fourier transform (@pxref{dsft}), the
+default action is to resize the dataset to the nearest integer power
+of 2.  Usage:
+
+@example
+dspad [-n @var{n}|-a @var{n}|-b @var{n}] ID(s)
+@end example
+
+The (mutually exclusive) options are:
+
+@table @code
+@item -n @var{n}
+@itemx --number=@var{n}
+Enlarge the dataset to @var{n} points.  @var{n} has to be larger than
+the current length of the dataset. 
+@item -a @var{n}
+@itemx --add=@var{n}
+Add @var{n} points to dataset.
+@item -b=@var{n}
+@itemx --log2=@var{n}
+Enlarge the dataset to 
+@ifnottex
+@math{2^@var{n}} 
+@end ifnottex
+@tex
+$2^n$ 
+@end tex
+points.
+@end table
+
+The new x-axis values are calculated by extrapolation, using
+@math{x[0]} and @math{x[M-1]}, where @math{M} is the original number
+of points.  Thus, the dataset should be ordered and the x-values
+equally spaced. 
+

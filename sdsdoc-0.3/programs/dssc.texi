@@ -1,0 +1,103 @@
+The @command{dssc} command is designed to re-scale the x- and y-arrays
+of a dataset according to a specified function:
+
+@example
+dssc [-x @var{expr}] [-y @var{expr}] ID(s)
+@end example
+or
+@example
+dssc -n @var{n} [-i @var{x}] [-a @var{x}] [-x @var{expr}] [-y @var{expr}]
+@end example
+
+The options are:
+@table @code
+@item -x @var{expr}
+@itemx -y @var{expr}
+Scaling for the x- and the y-array, respectively.  The syntax of
+@var{expr} is explained below.
+@item -n @var{n}
+@itemx --new=@var{n}
+Create new dataset with @var{n} datapoints.
+@item -i @var{x}
+@itemx --min=@var{x}
+Set the minimum x-value when creating a new dataset.
+@item -a @var{x}
+@itemx --max=@var{x}
+Set the maximum x-value when creating a new dataset.
+@end table
+
+In its first variant, @command{dssc} replaces, for the datasets
+specified by the IDs, each element of the x- and y-array by the value
+calculated from the corresponding functional expression @var{expr}.
+
+The second usage lets you create a new dataset according to a
+mathematical expression.  Conventionally, this is done by assuming a
+linear x-axis and specifying a function y(x).  @command{dssc} also
+allows for other methods, since both x- and y-array are initialized
+linearly before applying the corresponding scaling operations. 
+
+The interval for the x values is then controlled by the @code{-i} and
+@code{-a} options.  If both option are given, the specified interval
+is divided in @var{n}-1 sections.  If neither is specified, the
+minimum is set to 0 and the maximum to @var{n}-1.  If only the minimum
+is set, the interval spacing is also set to 1.  If only the maximum is
+given, say as @var{x}, the data is calculated on the interval from
+-@var{x} to @var{x}.
+
+The syntax of the mathematical expressions is worked closely to the C
+programming language.  It handles floating point numbers and the four
+elementary operations @kbd{+}, @kbd{-}, @kbd{*} and @kbd{/}, and
+respects their usual precedence.  Braces (@kbd{(} and @kbd{)}) can
+also be used.  In addition, a number of variables, constants and
+mathematical functions are recognized:
+
+@table @code
+@item i, N
+You can use @code{i} to refer to the current value of the array
+index. @code{N} specifies the total number of datapoints. 
+@item x, y, x[@var{j}], y[@var{j}]
+Refers to the current datapoint's x- and y-value, or to the @var{j}th
+element of the x- and y-array.  The arrays are indexed starting with
+0.  For convenience, @code{[N]} is equivalent to @code{[N-1]}.
+@item xmin, xmax, ymin, ymax
+These constants refer to the minimum or maximum of the x- and y-array,
+respectively. 
+@item pi, e, h, hbar, kb
+Physical constants.
+@item ee/h, h/ee, l00, phi0
+Combinations common in mesoscopic physics. @code{phi0} is the flux
+quantum, h/e.
+@item sin(x), cos(x), tan(x)
+@itemx asin(x), asin(x), acos(x) atan(x), atan2(x,y) 
+Trigonometric functions.
+@item exp(x), log(x), log10(x), pow(x,y)
+@itemx expm1(x), log1p(x), 
+Exponential and logarithmic functions.
+@item sqrt(x), cbrt(x), hypot(x,y)
+Square and cubic root.
+@item sinh(x), cosh(x), tanh(x)
+@itemx asinh(x), acosh(x), atanh(x)
+Hyperbolic functions.
+@item fabs(x), theta(x), min(x,y), max(x,y)
+Absolute value, step function, comparison.
+@item psi(x), psifn(x,n)
+Digamma and polygamma (n-th derivative of psi(x)) function.
+@item rand(x)
+Random numbers of variance x.
+@end table
+
+Most of the mathematical functions are provided by @code{libc},
+@xref{Mathematics,,,libc,The GNU C Library Reference Manual}.  The
+digamma functions are provided by the FORTRAN libraries
+(@pxref{Packages}).  There, you find the precise definition in
+@file{fn/dpsi.f} and @file{fn/dpsifn.f}.
+
+@vindex DSSC_SEED
+The random number generator can be seeded by setting the environment
+variable @env{DSSC_SEED}.  Thus, each run of @command{dssc} produces
+the same (pseudo) random numbers.  If unset, the seed is taken from
+@file{/dev/urandom}. 
+
+The compiled-in limits of @command{dssc}'s function stacks are: 100
+constants, 500 commands.  These are seldom serious constraints in
+praxis. 

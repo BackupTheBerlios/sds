@@ -1,0 +1,27 @@
+The autocorrelation function is defined as the convolution of a
+function with a shifted copy of itself:
+@ifnottex
+@display
+@math{ACO(x) = integral( f(x')*f(x'+x), x' )}.
+@end display
+@end ifnottex
+@tex
+$${\rm ACO}(x)=\int_{-\infty}^{+\infty}{\rm d}x'\,f(x')\cdot{}f(x'+x)\,.$$
+@end tex
+A convenient way to compute the convolution is via the Fourier
+transformation -- the FT of the autocorrelation is the power spectral
+density.
+
+Therefore, the command @command{dsaco} is closely related to
+@command{dsft}, and much of the same rules apply, @ref{dsft}. 
+Its usage is very simple in comparison:
+
+@example 
+dsaco [-a] ID(s)
+@end example
+
+If the @code{-a} option (long version @code{--anti}) is given, the
+anti-autocorrelation function is calculated.  This is a variant of the
+convolution defined above, with @math{f(x')} substituted by
+@math{f(-x')}. 
+

@@ -1,0 +1,31 @@
+The spline interpolation also offers a convenient way to compute the
+derivatives of a dataset.  The program @command{dsdydx} is thus modeled
+closely to @command{dsspline}.  For an extensive description,
+@ref{dsspline}.  There is, naturally, one new command line option:
+
+@table @code
+@item -e=@var{n}
+@itemx --derivative-order=@var{n}
+Compute the @var{n}-th derivative 
+@ifnottex
+@math{d^n/dx^n y(x)}
+@end ifnottex
+@tex
+${{{\rm d}^n}\over{{\rm d}x^n}} y(x)$
+@end tex
+.  The default is @math{@var{n}=1}.  In interactive mode, this
+parameter can be referred to by: @code{e}, @code{derivative-order},
+@code{der-order}, @code{derivative}, @code{der}, or @code{order}.
+@end table
+
+Apart from this, the usage is identical to that of
+@command{dsspline}.  You can even use the @code{-r} option to
+calculate the residuum, i.e. the difference between original data and
+spline interpolation.  In this case, however, no derivative is
+produced!
+
+Two new qpl windows are started in interactive mode:  one showing the
+original data and its spline-interpolation (as with
+@command{dsspline}), the other displaying the derivative (on plotlevel
+97). 
+

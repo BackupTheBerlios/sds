@@ -1,0 +1,142 @@
+When evaluating the measurements of Universal Conductance Fluctuations
+(UCF), a fit to their power spectral density (PSD) can be useful.  The
+program @code{dscf} uses a fit routine that takes into account the
+properties of the distribution of the PSD that are particular to the
+UCF.  Therefore, it does not employ the usual least-square method.
+Instead, the proper theoretical deviation (see, e.g., the appendix of
+my PhD-thesis) is minimized using a FORTRAN implementation of the
+truncated-Newton method (see the file @file{dscf/tn.f} in the
+@code{qplprog1} package).  Because of this unconventional approach,
+you should start with good initial values for the two fit parameters
+(the rms amplitude and the correlation field) for the fit routine to
+converge to a proper fit in a reasonable time.  
+
+In addition to the UCF's PSD, the influence of experimental noise is
+taken into account.  This helps the fit by defining a finite
+high-frequency level for the PSD.  By specifying the characteristics
+of the low-pass filter, the complete shape of the noise spectrum can
+be modeled.  Furthermore (and rather for historical reasons), the
+programs also allows for a second UCF spectrum. 
+
+Most command line parameters and the commands of the interactive mode
+correspond to those of the non-linear least square fit programs
+(@pxref{Least Square Fit}).  However, there is little fine-control of
+the fit routine.  A set of parameters determines the shape of the fit
+function (see table below).  The fit routine only tries to adjust the
+two parameters (@var{rms} and @var{pc}) describing the UCF.
+
+The usage of @command{dscf} is straightforward:
+
+@example
+dscf [options] ID(s)
+@end example
+
+The additional options are:
+
+@table @code
+@item --rms=@var{rms}
+Specify the initial value for the rms (root mean square) amplitude.
+The default value is 1.
+@item --pc=@var{pc}
+Specify the initial value for the correlation field.  The default
+value is 1.
+@item --pspan=@var{P}
+The interval of the fluctuation measurement has the length @var{P}.
+This is important for the proper scaling of the PSD.
+@item --rms2=@var{rms2}
+Auxiliary UCF amplitude (default is @math{@var{rms2}=0}).
+@item --pc2=@var{pc2}
+Auxiliary UCF correlation field.
+@item --ms=@var{level}
+Specify the noise amplitude (in variance per bandwidth, divided by
+@var{P}).  The default is @math{@var{level}=0}.
+@item --slope_order=@var{n}
+Order of the low-pass filter (default: @math{@var{n}=1}). 
+@item --tc=@var{T}
+The time constant of the low-pass filter. 
+@item --filter_type=@var{j}
+The type of low-pass filter.  @math{@var{j}=0}: exponential ('RC', the
+default), @math{@var{j}=1}: rectangle ('moving average').
+@item -o @var{m}
+@itemx --opt=@var{m}
+Fit mode: for @math{@var{m}=0}, the PSD is just plotted,
+@math{@var{m}=1} (the default) means the fit routine tries to optimize
+@var{rms} and @var{pc}. 
+@end table
+
+The input data has to consist of the fluctuations' power spectrum,
+i.e. the absolute value of the Fourier coefficients squared (you would
+have to multiply this with the length of the interval in the time
+domain, @var{P}, to get the power spectral @emph{density}).  The fit
+procedure of @command{dscf} is only useful for non-negative
+frequencies.  You should therefore limit the fit interval accordingly,
+or leave out the negative frequencies when calculating the power
+spectrum.  A simple method to prepare the data would look like this:
+
+@example
+dsft -ta0 @var{id}
+dssc -y "y*y" @var{id}
+@end example
+
+Remember that the initial number of datapoints should be an integer
+power of two (@pxref{dsft}).  Another (less direct) way to prepare the
+input of @command{dscf} would be to Fourier-transform the data's
+autocorrelation function.
+
+The following expression is used to fit the data:
+@ifnottex
+
+@display
+y_i = [ F(@var{rms},@var{pc}) + @var{level} + F(@var{rms2},@var{pc2}) ] * G_@var{j}
+@end display
+
+@end ifnottex
+@tex
+$$ 
+y_i = [F(@var{rms},@var{pc}) + @var{level} + F(@var{rms2},@var{pc2})]\cdot{}G_j
+$$
+@end tex
+@math{F} and @math{G} describe the contribution of the UCF and the
+low-pass filter, respectively:
+@ifnottex
+
+@display
+F(@var{a}, @var{b}) = (pi/2) (@var{a})^2 (a*@var{b}/@var{P}) 
+          * (1 + 2*pi*a*x_i*@var{b}) * exp(-2*pi*a*x_i*@var{b}]),
+      a = 1 / sqrt[sqrt(2) - 1]
+@end display
+@end ifnottex
+@tex
+$$ F(a, b) = 
+         {\pi\over 2} a^2 (\alpha b/@var{P})
+         (1+2\pi{}\alpha{}x_i b)
+         \exp(-2\pi{}\alpha{}x_i b)\,, 
+         \quad \alpha = \left(\sqrt{2}-1\right)^{-1/2}
+$$
+@end tex
+@ifnottex
+
+@display
+G_0 = [ 1 + (2*pi*x_i*@var{T})^2 ]^(-@var{n}),
+G_1 = [ sin(2*pi*x_i*@var{T})/(2*pi*x_i*@var{T}) ]^(2*@var{n})
+@end display
+@end ifnottex
+@tex
+$$ G_0 = \left[1 + (2\pi x_i @var{T})^2\right]^{-n} \qquad 
+   G_1 = \left[{{\sin(2\pi x_i @var{T})}\over{2\pi x_i @var{T}}}\right]^{2n} 
+$$
+@end tex
+
+In interactive mode, the commands to set the parameters correspond to
+the command line options listed above (without the @code{--}, of
+course!).  The additional command @code{swap_ucf} can be used to
+exchange the values of @var{rms} and @var{pc} with those of @var{rms2}
+and @var{pc2}, respectively.
+
+For an adequate visualization of the data, a logarithmic
+representation is advisable -- type @kbd{l} in the qpl window.
+
+
+
+
+

@@ -1,0 +1,99 @@
+The command @command{dsl} is used to load data either from
+source files, which are usually plain text:
+
+@example
+dsl [-v] [-p @var{n}] [-x @var{n}] [-y @var{n}] source_name(s)
+@end example
+
+or from dsh-files (see @pxref{Log/reg/load Mechanism}):
+
+@example
+dsl [-v] [-p @var{n}] [-R|-r @var{n}] dsh_file::name(s)
+@end example
+
+The options are:
+@table @code
+@item -p @var{n}
+@itemx --plotlevel=@var{n}
+Set the plot level of the new dataset (defaults to 0). 
+@item -x @var{n}
+@itemx -y @var{n}
+When loading from multi-column text files, you can pick the desired x-
+and y-column.  Enumeration starts with 1, default is x=1, y=2.
+@item -R
+@itemx --recurse_forever
+When re-executing the commands in a dsh-file, the log file entries are
+also recreated.
+@item -r @var{n}
+@itemx --recurse=@var{n}
+Limit the recreation of log lines to the given number of recursive
+dsh-file entries.
+@item -v
+@itemx --verbose
+Output detailed comments on the load process to standard error.
+@end table
+
+When specifying more than one file to load, you can of course mix the
+two methods.  Source files can also be produced by @ref{dss/dsd}, in
+which case the settings concerning colors, symbol style, etc. are
+reapplied.
+
+@vindex SDF
+@vindex SDS_LOAD_PATH
+@vindex SDS_SOURCE_PATH
+The actions of @command{dsl} are controlled by three environment
+variables:
+
+@table @env
+@item SDF
+Points to the file that contains the central data segment.
+@item SDS_SOURCE_PATH
+This path variable (a list of directories separated by @samp{:}) is
+searched when loading data from source files. 
+@item SDS_LOAD_PATH
+Specifies the path to search for dsh-files.
+@end table
+
+When successful, @command{dsl} prints a space-separated list of the
+IDs of the newly generated datasets to the standard output.  A single
+corresponding entry to the log file is produced for each file loaded.
+This means that when loading from a dsh-file, the log mechanism is
+usually turned off when re-executing the list of commands.  If you
+load data from a dsh-file, but want the log file to look just the way
+it did before you created the dsh-file entry ---this can be helpful
+for de-tangling dsh-entries---, you can use the @code{-r} or @code{-R}
+options.  @dfn{Recursive} in this context means that while loading
+from a dsh-file, @command{dsl} is called again to load another
+dsh-entry (from the same or from a different file), like this:
+
+@example
+/* dsh-file "exam" */
+
+recurs : 1 @{
+1      dsl ple::ive
+       dssc -x 2*x $1
+@}
+@end example
+
+@command{dsl} creates two entries in the dataset's ident-array
+(@pxref{Data Structure}): The first is the name of the file as given
+on the command line, the second entry contains the complete filename.
+You can access this information in a convenient way with the
+@command{dsn} command, @xref{dsn}. 
+
+Because the log mechanism is temporarily disabled by @command{dsl},
+the interruption of its execution (e.g. by typing @kbd{Ctrl-c}) can
+be problematic.  You can use @command{dslog} to check and correct the
+status of the sdf-file (@pxref{dslog}).
+
+Another area of conflicts is related to the handling of the names of
+the source files.  Usually, @command{dsl} splits off the part of the
+file name matching the @env{SDS_SOURCE_PATH} when writing the log
+entry.  Thus, things turn out ugly if you somehow manage to load two
+files with the same name.  This could happen, for example, if you set
+@code{SDS_SOURCE_PATH=.} (which can be quite convenient at times).
+You can get rid of this ambiguity by calling @command{dsl} with
+absolute file names (with leading @kbd{/}).  That is not recommended
+for general use, however, since it ties the evaluation to a
+filesystem-specific location and also leads to rather long log
+entries. 

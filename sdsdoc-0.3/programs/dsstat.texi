@@ -1,0 +1,121 @@
+The program @command{dsstat} calculates a choice of statistical
+properties of the datasets and prints them in a multicolumn format. 
+@vindex DSSTAT_OPTION
+A list of output fields, denoted by their short option character, can
+be indicated by the environment variable @env{DSSTAT_OPTION}.  On the
+command line, you can specify a number of options (see below), and an
+additional list of IDs:
+
+@example
+dsstat [options] [ID(s)]
+@end example
+
+If no IDs are given, the output values are calculated for all
+datasets.  If only a single value is requested, the header line and the
+column with the IDs are omitted.  For those options that can be
+applied to both the x- and the y-values, the short option is a capital
+letter for the x-value and a small letter for the corresponding
+y-value.  @strong{Warning}: for this program, the @code{-V} thus does
+not print the version information, in contrast to the @ref{Common
+Options}.  The options of @command{dsstat} are in detail:
+
+@table @code
+@item -l
+@itemx --long    
+Print output fields according to the string of options given by the
+@env{DSSTAT_OPTION} environment variable. 
+@end table
+
+The rest of the options denote the statistical quantities to be printed:
+
+@table @code  
+@item -I
+@itemx --min_x    
+minimum of the x-values
+@item -A
+@itemx --max_x
+maximum of the x-values
+@item -x
+@itemx --sum_x
+sum of the x-values
+@item -X
+@itemx --sum_x2
+sum of squares of the x-values
+@item -M
+@itemx --mean_x
+mean of the x-values
+@item -V
+@itemx --var_x
+variance of the x-values
+@item -R
+@itemx --rms_x
+rms of the x-values
+@item -T
+@itemx --std_x
+standard deviation of the x-values
+@item -i
+@itemx --min_y
+minimum of the y-values
+@item -a
+@itemx --max_y
+maximum of the y-values
+@item -y
+@itemx --sum_y
+sum of the y-values
+@item -Y
+@itemx --sum_y2
+sum of squares of the y-values
+@item -m
+@itemx --mean_y
+mean of the y-values
+@item -v
+@itemx --var_y
+variance of the y-values
+@item -r
+@itemx --rms_y
+rms of the y-values
+@item -t
+@itemx --std_y
+standard deviation of the y-values
+@item -c
+@itemx --sum_xy
+sum of product of the x- and y-values
+@item   --a
+slope of linear regression
+@item   --b
+constant term in linear regression
+@item -n
+@itemx --NoP
+number of points
+@end table
+
+For the minimum and maximum values (@code{-a}, @code{-A},
+@code{-i}, or @code{-I}), the output is given in a special form
+@example
+[ @var{j} ]=( @var{x}, @var{y} )
+@end example
+where @var{j} gives the array index of the minimum or maximum value,
+and @var{x} and @var{y} refer to its exact coordinates. 
+
+Just for clarity, the definition of the `advanced' statistical quantities
+(in this case, for the x-array) are: 
+
+@table @asis
+@item variance
+@ifnottex
+@math{sum(x^2)/N - mean(x)^2}
+@end ifnottex
+@tex
+$\sum{x^2}/N - \bar{x}^2$
+@end tex
+@item rms
+square-root of the variance
+@item standard deviation
+@ifnottex
+@math{sqrt( (sum(x^2)-sum(x)^2)/(N-1) )}
+@end ifnottex
+@tex
+$\sqrt{[\sum{x^2}-{(\sum{x})}^2]/(N-1)}$
+@end tex
+@end table 
+

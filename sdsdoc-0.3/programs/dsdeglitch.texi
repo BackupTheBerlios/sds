@@ -1,0 +1,44 @@
+Sometimes, the data evaluation is hindered by sporadic spikes or other
+glitches in the data.  The program @command{dsdeglitch} removes all
+peak-like artefacts that `stick out' more than a given amount.  New
+y-values are calculated by interpolating the neighboring data.  Usage:
+
+@example
+dsdeglitch -l @var{l} [options] ID(s)
+@end example
+
+The options are:
+
+@table @code
+@item -l @var{l}
+@itemx --level=@var{l}
+Remove spikes that are larger than @var{l} times the @var{rms} value
+(see below). 
+@item -i @var{min}
+@itemx --minx=@var{min}
+Limit the treatment to @math{x>@var{min}}. 
+@item -a @var{max}
+@itemx --maxx=@var{max}
+Limit the treatment to @math{x<@var{max}}.
+@item -m @var{mean}
+@itemx --mean=@var{mean}
+Use this option to set the mean value of the y-array by hand.
+Otherwise, @var{mean} will be calculated from the data.
+@item -r @var{rms}
+@itemx --rms=@var{rms}
+Specify the root mean square of the deviations from @var{mean},
+instead of letting @command{dsdeglitch} calculate @var{rms}.
+@end table
+
+This routine assumes that the data is @emph{ordered} (ascending or
+descending)!  The replacement values are calculated by a linear
+interpolation between the first datapoints with @math{y<@var{rms}} to
+the left and the right of the spike. 
+
+The amount of data that was removed by @command{dsdeglitch} is
+reported as a comment to the log file, which specifies a `weight'.  If
+@math{T} is the total length of the interval, and @math{X} gives the
+total length of the x-array that has been altered by the
+`deglitching', the weight factor is @math{T/(T-X)}.  This factor can
+be useful e.g. when comparing the variance of the data before and
+after the treatment.

@@ -1,0 +1,25 @@
+The log mechanism of qpl is controlled by a variable of the shared
+memory segment (@pxref{Data Structure}).  The small program
+@command{dslog} can be used to check or set this variable:
+
+@example
+dslog [-v] [-i|-o|-t] 
+@end example
+
+If run without any option (except, possibly, @code{-v}), the current
+status is printed.  The options are:
+
+@table @code
+@item -i
+@itemx --on
+Enable the log mechanism.
+@item -o
+@itemx --off
+Disable the log mechanism.
+@item -t
+@itemx --toggle
+Toggle the setting of the log variable.
+@item -v
+@itemx --verbose
+Print further comments to standard error.
+@end table

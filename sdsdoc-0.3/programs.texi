@@ -1,0 +1,352 @@
+@node Programs
+@chapter Programs
+
+In the following sections, the programs that make up the qpl packages
+are presented one by one.  Loosly following the packages' directory
+structure (@pxref{Packages}), they are grouped in categories according
+to their purpose.  There is a small set of common command-line options
+which is described in the first section to avoid repetition. 
+
+@menu
+* Common Options::                 Usage, warranty, copying
+* Data I/O::                       Loading and saving datasets
+* Visualization and Information::  View / change dataset properties
+* Simple Manipulations::           Scale, add, delete, etc. 
+* Fit Routines::                   Splines, least square fits
+* Fourier Transformation::         FFT, autocorrelation
+* Specialized Programs::           UCF, weak localization
+@end menu
+
+@node Common Options
+@section Common Options
+
+@table @code
+@item -h
+@itemx -?
+@itemx --help
+Print brief program usage.
+@item -V
+@itemx --version
+Dispay the program's version number.
+@item -W
+@itemx --warranty
+Display warranty and licensing terms. @xref{License}, for the details.
+@item -C
+@itemx --copyright
+Show copyright information. @xref{Authors}, for a complete list of
+contributors.
+@end table
+
+@node Data I/O
+@section Data I/O
+
+There are several ways to add datasets to the central memory
+segment.  The most common one is to load data from a file using dsl.
+Dsg was written to feed a dataset from standard input, with the
+typical application of monitoring measurements.  It is also possible
+to generate data by calling @code{dssc -n}, see @ref{dssc}. 
+
+Data can be saved to a file with dss (or dsd).  However, except for a
+header containig the dataset properties, no information regarding the
+processing steps is preserved.  This is achieved with dsreg, which
+analyzes the log file (@pxref{Log/reg/load Mechanism}).
+
+@menu
+* dsl::      Load data
+* dss/dsd::  Save data
+* dsreg::    Save data history
+* dsrm::     Remove datasets
+* dsg::      Generate data
+* colxy::    Filter multicolumn data
+* dslog::    Check log status
+@end menu
+
+@node dsl
+@subsection @code{dsl}
+@pindex dsl
+@cindex Load data
+@include programs/dsl.texi
+
+@node dss/dsd
+@subsection @code{dss}/@code{dsd}
+@pindex dss
+@pindex dsd
+@cindex Save data
+@include programs/dsd_s.texi
+
+@node dsreg
+@subsection @code{dsreg}
+@pindex dsreg
+@cindex Register data history
+@include programs/dsreg.texi
+
+@node dsrm
+@subsection @code{dsrm}
+@pindex dsrm
+@cindex Remove datasets
+@include programs/dsrm.texi
+
+@node dsg
+@subsection @code{dsg}
+@pindex dsg
+@cindex Generate data
+@include programs/dsg.texi
+
+@node colxy
+@subsection @code{colxy}
+@pindex colxy
+@cindex Read data from multicolumn files
+@include programs/colxy.texi
+
+@node dslog
+@subsection @code{dslog}
+@pindex dslog
+@cindex Check log status
+@include programs/dslog.texi
+
+@node Visualization and Information
+@section Visualization and Information
+
+@menu 
+* qpl::       Graphical presentation of datasets
+* dsls::      List datasets
+* dssp::      Change dataset properties
+* dsf::       Finding IDs
+* dsn::       Print the name of a dataset
+* dsstat::    Compute statistics
+* dsminmax::  Find local minima and maxima
+* dsmatch::   Show closest matching datapoint
+@end menu
+
+@node qpl
+@subsection @code{qpl}
+@pindex qpl
+@cindex Graphical presentation of datasets
+@include programs/qpl.texi
+
+@node dsls
+@subsection @code{dsls}
+@pindex dsls
+@cindex List datasets
+@include programs/dsls.texi
+  
+@node dssp
+@subsection @code{dssp}
+@pindex dssp
+@cindex Plot properties
+@cindex Set colors, etc.
+@include programs/dssp.texi
+
+@node dsf
+@subsection @code{dsf}
+@pindex dsf
+@cindex Find IDs
+@include programs/dsf.texi
+
+@node dsn
+@subsection @code{dsn}
+@pindex dsn
+@cindex Print the name of a dataset
+@include programs/dsn.texi
+
+@node dsstat
+@subsection @code{dsstat}
+@pindex dsstat
+@cindex Compute statistics
+@include programs/dsstat.texi
+
+@node dsminmax
+@subsection @code{dsminmax}
+@pindex dsminmax
+@cindex Find local minima and maxima
+@include programs/dsminmax.texi
+
+@node dsmatch
+@subsection @code{dsmatch}
+@pindex dsmatch
+@cindex Find closest matching datapoint
+@include programs/dsmatch.texi
+
+@node Simple Manipulations
+@section Simple Manipulations
+
+@menu
+* dssc::         Scale data
+* dsdel::        Delete datapoints
+* dscat::        Concatenate datasets
+* dssort::       Sort data
+* dsfunc::       Make @math{y(x)} a function
+* dseinige::     Reduce density of data
+* dsadd/dsmul::  Add or multiply datasets
+* dsint::        Simple integration
+* dsfilter::     Simple filtering
+* dshist::       Compute histograms
+* dspad::        Pad data with zeros
+* dsdeglitch::   Remove unwanted spikes
+@end menu
+
+@node dssc
+@subsection @code{dssc}
+@pindex dssc
+@cindex Scale data
+@cindex Generate data from function
+@include programs/dssc.texi
+
+@node dsdel
+@subsection @code{dsdel}
+@pindex dsdel
+@cindex Delete datapoints
+@include programs/dsdel.texi
+
+@node dscat
+@subsection @code{dscat}
+@pindex dscat
+@cindex Concatenate datasets
+@include programs/dscat.texi
+
+@node dssort
+@subsection @code{dssort}
+@pindex dssort
+@cindex Sort data
+@include programs/dssort.texi
+
+@node dsfunc
+@subsection @code{dsfunc}
+@pindex dsfunc
+@cindex Make y(x) a function
+@include programs/dsfunc.texi
+
+@node dseinige
+@subsection @code{dseinige}
+@pindex dseinige
+@cindex Reduce data density
+@include programs/dseinige.texi
+
+@node dsadd/dsmul
+@subsection @code{dsadd}/@code{dsmul}
+@pindex dsadd
+@pindex dsmul
+@cindex Add or multiply datasets
+@include programs/dsaddmul.texi
+
+@node dsint
+@subsection @code{dsint}
+@pindex dsint
+@cindex Simple integration
+@include programs/dsint.texi
+
+@node dsfilter
+@subsection @code{dsfilter}
+@pindex dsfilter
+@cindex Filter data
+@include programs/dsfilter.texi
+
+@node dshist
+@subsection @code{dshist}
+@pindex dshist
+@cindex Compute histograms
+@include programs/dshist.texi
+
+@node dspad
+@subsection @code{dspad}
+@pindex dspad
+@cindex Padding datasets with zeros
+@include programs/dspad.texi
+
+@node dsdeglitch
+@subsection @code{dsdeglitch}
+@pindex dsdeglitch
+@cindex Removing spikes
+@include programs/dsdeglitch.texi
+
+@node Fit Routines
+@section Fit Routines
+
+@menu
+* Least Square Fit::  Principle of operation
+* Interactive::       Using the interactive mode
+* Sigma::             Specifying the data's weight
+* dsfit::             Polynom fit
+* dspeak::            Lorentzian and Gauss fits
+* dsxfit::            Fit an arbitrary function
+* dsspline::          Spline interpolation
+* dsdydx::            Derivative of the interpolation
+@end menu
+
+@include fit.texi
+
+@node dsfit
+@subsection @code{dsfit}
+@pindex dsfit
+@cindex Polynom fit
+@include programs/dsfit.texi
+
+@node dspeak
+@subsection @code{dspeak}
+@pindex dspeak
+@cindex Peak fit
+@cindex Lorentzian fit
+@cindex Gaussian fit
+@include programs/dspeak.texi
+
+@node dsxfit
+@subsection @code{dsxfit}
+@pindex dsxfit
+@cindex arbitrary function fit
+@include programs/dsxfit.texi
+
+@node dsspline
+@subsection @code{dsspline}
+@pindex dsspline
+@cindex Spline interpolation
+@include programs/dsspline.texi
+
+@node dsdydx
+@subsection @code{dsdydx}
+@pindex dsdydx
+@cindex Derivative of y(x)
+@include programs/dsdydx.texi
+
+@node Fourier Transformation
+@section Fourier Transformation
+
+@menu
+* dsft::    Fast Fourier transformation
+* dsaco::   Autocorrelation function
+@end menu
+
+@node dsft
+@subsection @code{dsft}
+@pindex dsft
+@cindex Fourier transformation
+@cindex FFT
+@include programs/dsft.texi
+
+@node dsaco
+@subsection @code{dsaco}
+@pindex dsaco
+@cindex Autocorrelation function
+@include programs/dsaco.texi
+
+@node Specialized Programs
+@section Specialized Programs
+
+@menu
+* dswl::  Weak localization fit
+* dscf::  Fit UCF power spectrum 
+@end menu
+
+@node dswl
+@subsection @code{dswl}
+@pindex dswl
+@cindex Weak localization
+@cindex Fit weak localization
+@include programs/dswl.texi
+
+@node dscf
+@subsection @code{dscf}
+@pindex dscf
+@cindex Conductance fluctuations fit
+@cindex UCF fit
+@include programs/dscf.texi
+

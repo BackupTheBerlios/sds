@@ -1,0 +1,45 @@
+The program @command{dshist} compiles a histogram based on the
+y-arrays of the datasets on a given interval.  The result is stored in
+a new dataset.  Usage:
+
+@example
+dshist -d @var{dy}|-n @var{n} [-i @var{min}] [-a @var{max}] ID(s)
+@end example
+
+The options are:
+@table @code
+@item -d @var{dy}
+@itemx --delta=@var{dy}
+Set the width of the slots to @var{dy}, see below. 
+@item -n @var{n}
+@itemx --NoP=@var{n}
+Create a histogram with @var{n} slots. 
+@item -i @var{min}
+@itemx --min=@var{min}
+The minimum y-value to be counted (all @math{y<@var{min}} are
+ignored).  The default value is the smallest y-value. 
+@item -a
+@itemx --max=@var{max}
+The corresponding upper limit.  The default is the largest y-value.
+@end table
+
+
+Either the number of slots or the slot width must be given, with
+@math{@var{dy}=(@var{max}-@var{min})/@var{n}}.  Slot @math{i} contains
+the count for 
+@ifnottex
+@math{@var{min}+i*@var{dy} <= y < @var{min}+(i+1)*@var{dy}}
+(@math{i=0@dots{}@var{n}-2}).
+@end ifnottex
+@tex
+$@var{min}+i\cdot{}@var{dy}\le y < @var{min}+(i+1)\cdot{}@var{dy}$
+($i=0@dots{}@var{n}-2$).
+@end tex
+The last slot (@math{i=@var{n}-1}) also counts @math{y=@var{max}}: 
+@ifnottex
+@math{@var{max}-@var{dy} <= y <= @var{max}}.
+@end ifnottex
+@tex
+$@var{max}-@var{dy}\le{}y\le{}@var{max}$.
+@end tex
+ 

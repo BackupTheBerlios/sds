@@ -1,0 +1,9 @@
+The program @command{dsminmax} determins the local minima and maxima
+of the given datasets.  The results are printed for each ID in a
+four-column format: the first two give the x and y values of the
+minima, the last two those of the maxima.  Usage:
+
+@example
+dsminmax ID(s)
+@end example
+

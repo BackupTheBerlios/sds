@@ -1,0 +1,57 @@
+The command @command{dsls} is used to produce sorted multicolumn lists
+of datasets properties. Usage:
+
+@example
+dsls [options] [ID(s)]
+@end example
+
+If no IDs are given, the properties of all datasets are shown.  If no
+options are specified, just the ID and the ident strings are listed.
+The output is sorted in ascending order, using first the plot level
+and then ID.  
+
+The following options can be used to specify a set of output fieds:
+@table @code
+@item -n
+@itemx --NoP
+number of points
+@item -p
+@itemx --plevel
+plot level
+@item -b
+@itemx --linestyle
+line style
+@item -u
+@itemx --linewidth
+line width
+@item -c
+@itemx --linecolor
+line color
+@item -k
+@itemx --symbolstyle
+symbol style
+@item -e
+@itemx --symbolsize
+symbol size
+@item -t
+@itemx --symbolcolor
+symbol color
+@item -i
+@itemx --ident
+the ident strings
+@end table
+
+@vindex DSLS_OPTION
+The short options can be concatenated, e.g. @code{dsls -pin}.  You can
+also set the environment variable @env{DSLS_OPTION} to such a string
+(without the @samp{-}) and use @code{dsls -l}, see below.
+
+Further options:
+@table @code
+@item -l
+@itemx --long
+List the fields given by the environment variable @env{DSLS_OPTION}.
+@item -I @var{n}
+@itemx --Ident @var{n}
+Print only the first @var{n} ident strings.
+@end table

@@ -1,0 +1,40 @@
+It is a common task to look for the approximate coordinates of an
+arbitrary point on a data curve.  You can do this interactively with
+the zoom and cursor functions of @command{qpl}, or you can use
+@command{dsmatch} on the command line.  For a given x- or y-value, it
+interpolates between the two nearest data points to calculate the
+complementary coordinate.  The program does not assume the data to be
+sorted but searches the whole dataset for the closest match.  You
+should therefore limit the range of x- and y-values accordingly to
+limit the search to a monotonous region.  Usage:
+
+@example
+dsmatch [options] [-x @var{x}|-y @var{y}] ID(s)
+@end example
+
+The options are:
+
+@table @code
+@item -x @var{x}
+@itemx --X=@var{x}
+Find the y-value of the point on the linearily interpolated
+@math{y(x)} curve with the x-value @var{x}.
+@item -y @var{y}
+@itemx --Y=@var{y}
+Perform the analogous operation to @code{-x} for the y-value @var{y}.
+@item -i @var{x}
+@itemx --min=@var{x}
+Set the lower limit for the x-values to @var{x}.
+@item -a @var{x}
+@itemx --max=@var{x}    
+Set the upper limit for the x-values to @var{x}.
+@item -I @var{y}
+@itemx --Min=@var{y}
+Set the lower limit for the x-values to @var{y}.
+@item -A @var{y}
+@itemx --Max=@var{y}
+Set the upper limit for the x-values to @var{y}.
+@item -v
+@itemx --verbose
+Print verbose information about the matching operation.
+@end table

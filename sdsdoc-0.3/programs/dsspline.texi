@@ -1,0 +1,88 @@
+The program @command{dsspline} carries out a spline interpolation of
+the given dataset.  As with the least-square fits, this is done with a
+FORTRAN routine (see the file @file{spline/curfit.f} in the
+@code{qplfortranlibs} package), and the usage of @command{dsspline} is
+thus very similar to that discussed in the previous sections.  Only
+those commands concerning the control of the corresponding fit routine
+are different.  As a consequence, the options @code{-f}, @code{-x},
+@code{-g}, @code{-t}, and those concerning the fit parameters
+(@pxref{Least Square Fit}) are replaced by:
+
+@table @code
+@item -k @var{k}
+@itemx --order=@var{k}
+Degree of the interpolated polynomial: @math{@var{k}=1, 2, 3, 4} or 5.  The
+default value is @math{@var{k}=3}.  Comment from the source code:
+@quotation
+It is recommended to use cubic splines (@math{@var{k}=3}).  The user
+is strongly dissuaded from choosing @var{k} even, together with a
+small @var{s}-value.
+@end quotation
+In some cases, e.g. if there are pronounced discontinuities at the
+ends of the x-interval, a linear spline can be of advantage. 
+@item -o @var{n}
+@itemx --opt=@var{n}
+Control parameter for the interpolation; see below and the explanation in
+the source code.  The default value is @math{@var{n}=0}. 
+@item -f @var{s}
+@itemx --s-factor=@var{s}
+Measure for the desired smoothness of the spline, see below.  The
+default is @math{@var{s}=0}.
+@end table
+
+The following brief description is derived from the FORTRAN source
+@file{spline/curfit.f}:
+
+@quotation
+In the default mode of operation, the number of knots of the spline
+@math{s(x)} and their position is chosen automatically by the routine.
+The smoothness of @math{s(x)} is then achieved by minimalizing the
+discontinuity jumps of the @var{k}-th derivative of @math{s(x)} at the
+knots.  The amount of smoothness is determined by the condition that
+@ifnottex
+sum((w_i*(y_i-s(x_i)))^2) <= @var{s}, 
+@end ifnottex
+@tex
+$\sum_i [w_i(y_i-s(x_i))]^2 \le s$
+@end tex
+with @var{s} a given non-negative constant, called the smoothing factor,
+and the weights @math{w} given by the sigma expression
+(@pxref{Sigma}).   
+
+By means of the parameter @var{s}, the user can control the tradeoff
+between closeness of fit and smoothness of fit of the approximation.
+If @var{s} is too large, the spline will be too smooth and signal will
+be lost; if @var{s} is too small the spline will pick up too much
+noise.  In the extreme cases the program will return an interpolating
+spline if @math{@var{s}=0} and the weighted least-squares polynomial
+of degree @var{k} if @var{s} is very large.  Between these extremes, a
+properly chosen @var{s} will result in a good compromise between
+closeness of fit and smoothness of fit.  [NB: However, the time for
+the computation can also increase drastically in this regime!]
+
+The (i)opt-parameter @var{n} determines whether a weighted
+least-squares spline for a given set of knots (@math{@var{n}=-1}), or
+a smoothing spline (@math{@var{n}=0} or 1) is calculated by adjusting
+the knots' position and number.  If @math{@var{n}=0}, the routine will
+start with an initial set of knots.  If @math{@var{n}=1}, the routine
+will continue with the knots found at the last call of the routine.
+attention: a call with @math{@var{n}=1} must always be immediately
+preceded by another call with @math{@var{n}=1} or @math{@var{n}=0}.
+[Therefore, @math{@var{n}=1} only works in interactive mode!]
+@end quotation
+
+In interactive mode, the parameters described above are manipulated by
+the following commands:
+
+@table @code
+@item k=@var{k}
+@itemx spline-order=@var{k}
+@itemx [spline] order=@var{k}
+spline order
+@item iopt=@var{n}
+control parameter
+@item f=@var{s}
+@itemx s-factor=@var{s}
+@itemx smoothing factor=@var{s}
+smoothing factor
+@end table

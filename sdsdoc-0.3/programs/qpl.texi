@@ -1,0 +1,37 @@
+The program @command{qpl} uses the Qt graphics library to show a
+graphical representation of the datasets in an X window.  The central
+data segment is checked in regular intervals, to update the plot if
+necessary.  Via menues or short-keys, the properties of the display,
+like the viewport, the scaling of the axis, or the plotlevels shown,
+can be modified.  The program also offers an interface to
+@command{pspl} for creating plots.  Usage:
+
+@example
+qpl [-u @var{time}] [-i @var{n} -a @var{n} | -l @var{n}]
+@end example
+
+The command line options are: 
+@table @code
+@item -u @var{time}
+@itemx --updatetime=@var{time}
+Refresh the plot every @var{time} milliseconds.  The default value is
+333 ms.
+@item -i @var{n}
+@itemx --minlevel=@var{n}
+Show only those datasets with a plotlevel of at least @var{n}.  The
+default is 0.
+@item -a @var{n}
+@itemx --maxlevel=@var{n}
+Show datasets with a plotlevel of up to @var{n}.  The default is 100.
+@item -l @var{n}
+@itemx --level=@var{n}
+Show only the datasets with plotlevel @var{n}. 
+@end table
+
+This documentation will refrain from listing all the available user
+actions. 
+
+@command{qpl}'s x- and y-axis can be switched to a logarithmic scale
+only if the data shown is strictly positive.
+
+@c continue..

@@ -1,0 +1,38 @@
+The command @command{dsreg} is used to extract (@dfn{register}) from
+the log file a complete list of program calls that were used to modify
+a certain dataset.  Usage:
+
+@example
+dsreg [-v] [-k|-l] [-o @var{file}] [-n @var{name}] ID(s)
+@end example
+
+The options are:
+@table @code
+@item -o @var{file}
+@itemx --output=@var{file}
+The file to which the dsh-entry is written (@var{file} is created if
+necessary, else appended).  If not specified, the entry is written to
+the standard output. 
+@item -n @var{name}
+@itemx --name=@var{name}
+Name of the dsh-entry (sometimes referred to as the `version').  The
+(silly) default is @code{hallo}.
+@item -l
+@itemx --load
+After writing the dsh-file, a corresponding load operation (@code{dsl
+@var{file}::@var{name}}) is performed.  The previous IDs are removed. 
+@item -k
+@itemx --keep
+The datasets are left unchanged (this is the default). 
+@item -v
+@itemx --verbose
+Detailed information is written to standard error.
+@end table
+
+It is important to realize that an entry in a dsh-file does not have
+to correspond to a single dataset.  You can, on the one hand, just
+specify any number of IDs to be registered under a common name.  On
+the other hand, the modifications applied to a certain dataset can
+depend on another ID.  So in order to give a complete set of
+commands, @command{dsreg} includes all commands applied to this second
+ID ---or any further ID involved--- to the dsh-entry.   

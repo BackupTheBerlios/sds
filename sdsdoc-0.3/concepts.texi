@@ -1,0 +1,365 @@
+@node Concepts
+@chapter Concepts
+
+The basic concept of the qpl-package is to store all datasets in a
+central location that can be easily accessed by the different programs
+that want to use it. These programs are usually controlled
+interactively from the command shell. An environment variable called
+@env{SDF} (@dfn{shared data file}) is used to point the programs to
+the data segment.
+
+As such a data segment usually contains several datasets, these have
+to be properly identified. This is done by assigning each a unique
+ID-number. In addition, further attributes like linecolor, symbolstyle
+and the name of the source file are stored. The IDs of a data segment
+are assigned starting from 1. The corresponding counter is increased
+for every dataset created. If a dataset is deleted, its ID is not
+reused to guarantee uniqueness. (In principle, there is of course the
+danger of an integer overflow.  However, since it is good practice to
+"clean up" every once in a while and delete the SDF-file, this has not
+been reported yet.) The IDs are then used to tell the different
+program's which datasets to manipulate.
+
+Furthermore, a log file is used to protocol the action of the different
+programs. Again, a dataset's ID can be used to harvest from this
+file all manipulation steps carried out. This information can be
+stored and used again to recreate the corresponding dataset, starting
+from its source. 
+
+The following sections describe the most important aspects of theses
+concepts.
+
+@menu
+* Log/reg/load Mechanism::  Keeping track of datasets
+* Example::                 A short sample session
+* Data Structure::          How the data is organized
+* Programming::             Programming considerations
+@end menu
+
+@node Log/reg/load Mechanism
+@section Log/reg/load Mechanism
+
+Usually, you start your work with qpl by loading data from a source
+file to the SDF-file.  Let's suppose you have a data segment with
+several datasets.  You can then manipulate these sets by calling
+various programs written for this prupose (see programs), passing as
+an argument a list of IDs.  The program documents its operation by
+writing a line to a log file (named @file{$SDF.log}) for each ID
+modified.  (The only exception is @code{dssp} (@pxref{dssp}): Since
+changing properties like linecolor and symbolstyle is usually not
+considered to be a genuine modification, the log mechanism is by
+default suspended.)
+
+The detailed syntax of the log file is most important for program
+developement, but also helpful in understanding the mechanism used to
+record the data evaluation.  Each line consist of a tag (enclosed in
+angular brackets) listing the IDs involved. The rest of the line
+contains the executed command almost verbatim, with just the IDs
+masked by preceding `$' signs.  The following lines can be comments,
+indicated by a `#' in the first column.
+@example
+<tag> program call $ID
+# comment
+@end example
+
+The purpose of the tag is to indicate concisely the action of the
+command.  A program can modify, create or delete an ID.  The operation
+performed on one dataset can also introduce dependencies on other
+datasets (an example would be subtracting two datasets). So, the most
+general tag looks like this:
+@example
+<MM,*CC*;+RR+:DD>
+@end example
+MM, CC, RR and DD are lists of IDs (a `list' can of course also be just
+a single ID).  The IDs in a list are separated by commas; ranges of
+IDs can be indicated by a dash. 
+
+The log file really comes into play when you want to record the
+results of a certain evaluation procedure, which might have involved a
+complicated sequence of program calls.  The dsreg program is then used
+to search the log file and pick out only the relevant entries.
+Because of the dependencies mentioned above, this may extend the
+number of datasets involved.  This list of commands extracted from the
+log file is converted to a more appropriate syntax and can be written
+to a so-called `dsh' (data set history) file.
+
+Each entry in a dsh file begins with the name given to the evaluation,
+a list of IDs produced (preceded by a colon), followed by a block of
+commands enclosed in curly braces:
+@example
+name: NN @{
+      commandlines
+@}
+@end example
+The commandlines begin with a list of the IDs created by the command
+(of course, if no datasets are created, there is nothing to be
+listed). The actual commands are indented by a tab stop (`\t') and
+correspond to the entries in the log file.
+
+It has to be noted, however, that the IDs have a different meaning in
+the dsh file.  Since it makes no sense to preserve the specific ID
+assigned to the dataset in the SDF file originally used, which is
+meant to be discardable, the IDs in the dsh file are renumbered,
+starting from 1 for each entry.
+
+Lines starting with a @code{#} are treated as comments. Between the
+entries in a dsh file, comments may also be placed in blocks enclosed
+by @code{/*}and @code{*/}. 
+
+The fundamental idea behind the dsh files is not just to document the
+data processing, but to be able to redo the sequence of manipulations
+automatically at a later time (using the dsl program), starting from
+the source.  Considering the speed of a modern PC, this is usally not
+a performance issue.  You don't have to start from scratch, though:
+the dsh mechanism also allows for recursive processing of dsh entries,
+or you could choose to store the results in a new data file.
+
+Hopefully, these rather technical remarks can be illuminated further
+by the sample session in the following section. 
+
+@node Example
+@section Example
+
+The following sample session with qpl is meant to be just a short
+demonstration of what might be a typical application.  There are no
+strict rules for this, which on the one hand gives the user many
+liberties, on the other hand also opens up some catches.
+
+The use of the command shell (here: bash) also plays an important role
+in working with qpl.  Especially when manipulating a large number of
+datasets, bash features like variables, loops or shell function can be
+quite helpful.  
+
+To start, you should set a couple of environment variables.  This also
+is a question of personal style.  I prefer to put the dsh-files in a
+separate directory, using the same name as the original file.  Other
+conventions are also practical.  One should, however, try to keep the
+setting of the path variables systematic (maybe set them
+automatically) or document them separately, as they are not stored in
+the dsh-files.  In a way, this is not a bug, but a feature, to keep
+the evaluations independent from their place in a filesystem.
+
+We'll assume the working directory (PWD) is called @file{/home/data}
+and contains the source file @file{newdata}, as well as the directory
+@file{dsh/} to store the results.  The data file could look like this:
+
+@example
+/* this is my new data:
+   time / s     current / A   temperature / K 
+*/
+   0            1.00          2.2
+   30           1.10          2.2
+   60           1.25          2.3
+   90           1.33          2.1
+   120          1.51          2.1
+   150          1.63          2.2
+@end example
+
+So, after setting the approriate variables, you can load the data,
+here the current over time:
+
+@example
+/home/data$ export SDF=$PWD/test
+/home/data$ export SDS_LOAD_PATH=$PWD/dsh ; mkdir dsh
+/home/data$ export SDS_SOURCE_PATH=$PWD
+/home/data$ dsl -x 1 -y 2 newdata
+1
+/home/data$ ls
+dsh  newdata  test  test.log
+@end example
+
+The listing shows the newly created SDF and log-file.  The ID of the
+dataset then is 1.  You could now start the qpl program (in the
+background) to take a look at the data during the following
+operations.
+
+@example
+/home/data$ dssc -x "x/60" 1
+/home/data$ dsfit --a=1 --b?=0 1
+newid=2
+/home/data$ dssp -c Red 2
+/home/data$ dsreg -o dsh/newdata -n straight 2
+@end example
+
+Now we have the time scaled to minutes, and the newly generated
+dataset (ID 2) is a straight line fit to it (you might have seen a
+warning message of the FORTRAN routine).  This is what
+@file{dsh/newdata} looks like:
+
+@example
+/* dsh-file "newdata" */
+
+straight : 1,2 @{
+1       dsl -x 1 -y 2 newdata
+        dssc -x x/60 $1
+2       dsfit -i 0 -a 2.5 --a 1 --b? 0.246545 -m 1.0 $1
+        # min=0, max=2.5, N=-1, F=0.000344964, X=0.000344964, G=0
+        # chi^2=0.00261091, variance= 0.000522182, gammaq=0.999999
+        # 
+        #              
+        # a=  1.00000
+        # b=  0.246545 +/- 0.27
+@}
+@end example
+
+Starting a second round, we first discard of the orignial data and
+resort to the dsh file:
+
+@example
+/home/data$ dsrm $(dsf)
+/home/data$ dsl newdata-dsh::straight
+3 4
+/home/data$ dsadd -m 3 4
+/home/data$ dsrm 4
+/home/data$ dsreg -o dsh/newdata -n flat 3
+@end example
+
+Take a look at @file{dsh/newdata} now.  There are many things you
+could have done differently.  You could have called @code{dsls} to get
+information on the datasets currently loaded.  Also, if you had used
+the @code{-l} option of @code{dssp}, ID 4 would have been drawn in
+red.
+
+@node Data Structure
+@section Data Structure
+
+The central code for the memory management is provided by a C++ class
+library, @file{libsd.so}.  The data stored in the SDF-file is mmap'ed
+to memory and can be manipulated by the corresponding member
+functions.  The library re-implements the mechanism of @code{malloc()}
+for efficient memory allocation.  The header file @file{SharedData.h}
+contains the class definitions for the objects representing the
+datasets and the data segment.  The library also comprises a few
+auxiliary functions for manipulating lists of IDs or strings for the
+log message, etc. Please check the source code (directories
+@file{include/} and @file{lib.src/} in @code{qplbase}) for the exact
+definitions.
+
+A dataset consist of the ID, the N-element x- and y-arrays containing
+the data points, and of header fields for additional attributes like
+line color, plot level, name of the source file, etc. Verbatim:
+
+@example
+class DataSet @{
+        friend class SharedData;
+        int id;
+        double *x;              // x-array
+        double *y;              // y-array
+        unsigned int nu;        // Maximal number of points
+        unsigned int nused;     // Actual number of points
+        char linestyle;
+        unsigned int linecolor;
+        unsigned int linewidth;
+        char symbolstyle;
+        unsigned int symbolcolor;
+        unsigned int symbolsize;
+        unsigned int plev;      // Plot level
+        char **ident;           // auxiliary information
+@};
+@end example
+
+Most entries are straight forward. The values assigned to the
+different line- and symbol-style and -colors can be retrieved in the
+header files @file{color.h}, @file{symbolstyle.h} and
+@file{linestyle.h} in @file{include/}, and in the corresponding
+@file{.cc} files in @file{lib.src/}. An arbitrary number of strings
+(usually two) that provide information concerning the dataset are
+stored in the @code{ident} array, which is NULL-terminated and can be
+extended by the programs or the user.  There are two variables that
+relate to the length of the x- and y-arrays: @code{nu} contains the
+size of these arrays as allocated, and @code{nused} indicates the
+index up to which the arrays are actually used. (This is a feature
+required by some programs, eg. @command{dsg}.)
+
+
+The object called SharedData is used to access the data segment given
+by the @env{SDF} environment variable. The access to the data segment is
+blocked for other processes once this object is created. This excerpt
+from the class definition lists the methods relevant for application
+programming:
+
+@example
+class SharedData @{
+ public:
+        SharedData(void);
+        ~SharedData();
+        DataSet       *sds(int *n);
+
+        int            create(int size);
+        int            newid(int id);
+        int            resize(int id,int size);
+        int            remove(int id);
+
+        int            hasid(int id);
+        double        *x(int id);
+        double        *y(int id);
+        unsigned int   n(int id);
+        unsigned int   nmax(int id);
+        unsigned int   linestyle(int id);
+        unsigned int   linewidth(int id);
+        unsigned int   linecolor(int id);
+        unsigned int   symbolstyle(int id);
+        unsigned int   symbolsize(int id);
+        unsigned int   symbolcolor(int id);
+        int            plev(int id);
+        char         **ident(int id, int *n);
+
+        unsigned int   set_n(int id, unsigned int n);
+        unsigned int   set_linestyle(int id, int type);
+        unsigned int   set_linewidth(int id, unsigned int w);
+        int            set_linecolor(int id, const char* cname);
+        unsigned int   set_symbolstyle(int id, int type);
+        unsigned int   set_symbolsize(int id, unsigned int s);
+        int            set_symbolcolor(int id, const char* cname);
+        int            set_plev(int id,int n);
+        int            add_ident(int id, const char *fstr,...);
+        int            set_ident(int id, const char **annos);
+
+        int            log(const char* message);
+        int            logstate(int on_off=2);
+
+        int           *record_state(int *n);
+        int           *what_s_new(int *old,int oldn, int *newn);
+        int            changed(unsigned int *state=NULL);
+@};
+@end example
+
+Central to the class is of course @code{sds}, the array of datasets. The
+array index is only initially identical to the dataset's ID (minus 1):
+When a dataset is removed, its entry in the array is kept but marked
+by setting the ID to DS_UNUSED (@math{-1}).  These empty entries are then
+reused when creating a new dataset.  This also means that the size of
+the array is never reduced.  However, since the dataset header is
+usually small compared to the memory used to store the actual data,
+which @emph{is} freed when a dataset is removed, this should not be a
+serious problem.  (N.B. To further avoid frequent resizing of the
+sds-array, its size is increased in steps of 10.)
+ 
+The majority of member functions listed above provide an interface to
+the datasets based on their ID.  Most of them should be
+self-exlanatory: To get a dataset property, the ID is passed to the
+function, which in turn returns the requested parameter. If there is
+no dataset matching the ID, a default value is returned (see
+@file{sdpublic.cc} in @file{lib.src}/ for details).  To set a dataset
+parameter, its value and the ID are passed to the function, which
+returns the value actually stored.
+
+
+@node Programming
+@section Programming Considerations
+
+@itemize @bullet
+@item written in C++, FORTRAN
+@item look at examples: ?,??
+@item progam name: ds + english
+@item include SharedData.h
+@item create SharedData (preferably after --help) locks datasegment 
+@item use hasid()
+@item store sdf->x in local pointer, valid only if sdf is not deleted!
+@item set_n() after resize()! (slighlty archaic.. but dsg!)
+@item common bug: memory addressing
+@item Achilles' heel: log entry!!
+@item ident-strings still not strict rules, don't use as log
+@item package management: add programm to spec-file, Makefile, also adjust
+  release number in those files
+@end itemize

@@ -1,0 +1,43 @@
+@node Packages
+@chapter The qpl Packages
+
+The various programs that belong to qpl are organized in packages.
+Appart from many practical advantages, this was done to split off the
+areas of active developement from the more basic parts.  At the
+moment, there are four packages:
+
+@table @code
+@item qplfortranlibs
+The FORTRAN libraries
+
+@item qplbase
+The basic tools
+
+@item qplprog1
+Fit routines, other specialized programs
+
+@item qpldoc
+Documentation
+
+@end table
+
+Most of the programs rely on standard tools like gcc, make, flex and
+bison (yacc).  Qpl itself needs the qt libraries, and the interactive
+fit routines rely on libreadline. 
+
+Unfortunately, the ability of @code{dssc} to act as a function
+plotter, including the digamma function, introduced the dependency of
+@code{qplbase} on @code{qplfortranlibs}.  However, this should be of
+little practical concern, unless you want to restrict yourself to
+@code{qplbase}. 
+
+To build the software, a simple @code{make} command in the package
+directory should suffice.  @code{make install} will then install the
+programs in the @file{/usr/local} tree.  Alternatively, you can build 
+RPM packages (@code{make dist}) for the Red Hat Package Manager, which
+is e.g. also used by the SuSE linux distribution. 
+
+The changes to the qpl code are handled with CVS,
+@inforef{Top,CVS,cvs}.  The repository is stored at
+@file{infplx9:/infp/lx9/noah/mesoCVS/}.  At the moment, you need to be
+a local user to access this directory.

@@ -1,0 +1,18 @@
+The program @command{dseinige} can be used to reduce a dataset's
+density by an integer factor (German `einige' means `a few'):
+
+@example
+dseinige -p @var{p} [-q @var{q}] ID(s)
+@end example
+
+The options are:
+
+@table @code
+@item -p @var{p}
+@itemx --step=@var{p}
+Keep every @var{p}-th datapoint.
+@item -q @var{q}
+@itemx --offset=@var{q}
+Start with the @var{q}-th element of the x-array.  The default is
+@math{@var{q}=0}. 
+@end table

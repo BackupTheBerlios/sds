@@ -1,0 +1,46 @@
+The program @command{dspeak} offers several ways to fit a peak shape
+to the data.  The parameters are:
+
+@table @code
+@item A
+peak height
+@item w
+peak width
+@item X0
+peak position
+@item Y0
+baseline offset
+@end table
+
+Currently, three shapes are supported: Gaussian, Lorentzian, and a
+modified Lorentzian, which is conventionally used to fit UCF
+autocorrelation functions.  In the latter case, @code{w} corresponds
+to the correlation field, and @code{A} to the rms-amplitude.  The
+different shapes are selected by command line arguments:
+
+@table @code
+@item -G
+@itemx --Gauss
+@tex 
+$A \cdot\exp\left[-{(x-X_0)^2}\over{2w^2}\right] + Y_0$
+@end tex 
+@ifnottex 
+A * exp(-((x-X0)/w)^2 / 2) + Y0 
+@end ifnottex
+@item -L
+@itemx --Lorentz
+@tex
+$A \cdot {\left[((x-X_0)/w)^2 + 1 \right]}^{-1} + Y_0 $
+@end tex
+@ifnottex
+A / ( ((x-X0)/w)^2 + 1 ) + Y0
+@end ifnottex
+@item -U
+@itemx --UCF
+@tex
+$ A^2 \cdot {\left[ (\sqrt{2}-1)((x-X_0)/w)^2 +1 \right]}^{-2} + Y_0$
+@end tex
+@ifnottex
+A^2 / ( (sqrt(2)-1)((x-X0)/w)^2 +1 )^2 + Y0
+@end ifnottex
+@end table

@@ -1,0 +1,91 @@
+Each dataset carries a set of properties that are mainly concerned
+whith its graphical representation.  The command @command{dssp}
+provides an interface to these settings:
+
+@example
+dssp [options] ID(s)
+@end example
+
+The options are:
+
+@table @code
+
+@item -p @var{n}
+@itemx --plev=@var{n}
+The plot level determines the order in which the datasets are plotted.
+The valid range is @math{@var{n}>-2}.  A dataset with
+@math{@var{n}=-1} is usually not displayed by @command{qpl}.
+@item -b @var{name}
+@itemx --linestyle=@var{name}
+Set the line style.  @var{name} can be @code{NoPen} (no line is
+drawn), @code{SolidLine}, @code{DashLine}, @code{DotLine},
+@code{DashDotLine}, or @code{DashDotDotLine}. 
+@item -u @var{n}
+@itemx --linewidth=@var{n}   
+Set the linewidth to @var{n}, with 
+@tex 
+$0\le{}n\le{}9$. 
+@end tex
+@ifnottex
+@math{0<=@var{n}<=9}.
+@end ifnottex
+@item -c @var{name}
+@itemx --linecolor=@var{name}
+Draw the line in the color @var{name}.  The color names are compatible
+to the Latex package @code{graphics}.  They are @code{GreenYellow},
+@code{Yellow}, @code{Goldenrod}, @code{Dandelion}, @code{Apricot},
+@code{Peach}, @code{Melon}, @code{YellowOrange}, @code{Orange},
+@code{BurntOrange}, @code{Bittersweet}, @code{RedOrange}, @code{Mahogany},
+@code{Maroon}, @code{BrickRed}, @code{Red}, @code{OrangeRed},
+@code{RubineRed}, @code{WildStrawberry}, @code{Salmon},
+@code{CarnationPink}, @code{Magenta}, @code{VioletRed}, @code{Rhodamine},
+@code{Mulberry}, @code{RedViolet}, @code{Fuchsia}, @code{Lavender},
+@code{Thistle}, @code{Orchid}, @code{DarkOrchid}, @code{Purple},
+@code{Plum}, @code{Violet}, @code{RoyalPurple}, @code{BlueViolet},
+@code{Periwinkle}, @code{CadetBlue}, @code{CornflowerBlue},
+@code{MidnightBlue}, @code{NavyBlue}, @code{RoyalBlue}, @code{Blue},
+@code{Cerulean}, @code{Cyan}, @code{ProcessBlue}, @code{SkyBlue},
+@code{Turquoise}, @code{TealBlue}, @code{Aquamarine}, @code{BlueGreen},
+@code{Emerald}, @code{JungleGreen}, @code{SeaGreen}, @code{Green},
+@code{ForestGreen}, @code{PineGreen}, @code{LimeGreen},
+@code{YellowGreen}, @code{SpringGreen}, @code{OliveGreen},
+@code{RawSienna}, @code{Sepia}, @code{Brown}, @code{Tan}, @code{Gray},
+@code{Black}, and @code{White}. 
+@item -k @var{name}
+@itemx --symbolstyle=@var{name}
+Specify the shape of the symbol for the datapoints: @code{NoSymbol},
+@code{ClosedCircle}, @code{OpenCircle}, @code{ClosedSquare},
+@code{OpenSquare}, @code{ClosedDiamond}, or @code{OpenDiamond}.
+@item -e  @var{n}
+@itemx --symbolsize=@var{n}
+Set the size of the symbols.  The valid range is
+@tex 
+$1\le{}n\le{}10$. 
+@end tex
+@ifnottex
+@math{1<=@var{n}<=10}.
+@end ifnottex
+@item -t @var{name}
+@itemx --symbolcolor=@var{name}
+Set the symbol color.  See the @code{-c} option above for the names. 
+@item -i @var{string}
+@itemx --ident=@var{string}
+Clear the array of ident-strings and use @var{string} instead. 
+@item -a @var{string}
+@itemx --add_ident=@var{string}
+Add @var{string} to the dataset's array of ident strings. 
+@item -r
+@itemx --rainbow
+Give each of the IDs passed on the command line a different color.
+The list of colors is: @code{Blue}, @code{Red}, @code{Green},
+@code{RawSienna}, @code{Goldenrod}, @code{Bittersweet},
+@code{Magenta}, @code{Orchid}, @code{PineGreen}, and @code{Tan}.  If
+there are more IDs than colors, the list is wrapped to the beginning.
+@item -l
+@itemx --log
+Create an entry for the log file.  Thus, the action of @command{dssp}
+is recorded by @command{dsreg}. 
+@item -q
+@itemx --quiet       
+Do not create a log entry.  This is the default behavior. 
+@end table

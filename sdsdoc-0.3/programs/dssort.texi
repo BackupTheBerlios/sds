@@ -1,0 +1,7 @@
+For many numerical operations, well-sorted data is of advantage.  The
+program @command{dssort} sorts the datasets so that the x-arrays are
+in ascending order:
+
+@example
+dssort ID(s)
+@end example

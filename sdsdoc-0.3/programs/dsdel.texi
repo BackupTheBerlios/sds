@@ -1,0 +1,69 @@
+With @command{dsdel}, you can delete part of a dataset.  The part of
+the data to be removed is determined by testing an expression given on
+the command line:
+
+@example
+dsdel -t @var{expr} ID(s)
+@end example
+
+The syntax of @var{expr} is similar to those of @command{dssc}
+(@pxref{dssc}).  However, the typical test expressions are simple
+expressions like @code{x<=2}.  Using logical operations, multiple
+expressions can be combined.  You can use a subset of the elements of
+the scaling expressions of @command{dssc}, please refer to that
+section for further references:
+
+@table @code
+@item i, N
+You can use @code{i} to refer to the current value of the array
+index. @code{N} specifies the total number of datapoints. 
+@item x, y, x[@var{j}], y[@var{j}]
+Refers to the current datapoint's x- and y-value, or to the @var{j}th
+element of the x- and y-array.  The arrays are indexed starting with
+0.  For convenience, @code{[N]} is equivalent to @code{[N-1]}.
+@item pi, e, h, hbar, kb
+Physical constants.
+@item ee/h, h/ee, l00, phi0
+Combinations common in mesoscopic physics. @code{phi0} is the flux
+quantum, h/e.
+@item sin(x), cos(x), tan(x)
+@itemx asin(x), asin(x), acos(x) atan(x), atan2(x,y) 
+Trigonometric functions.
+@item exp(x), log(x), log10(x), pow(x,y)
+@itemx expm1(x), log1p(x), 
+Exponential and logarithmic functions.
+@item sqrt(x), cbrt(x), hypot(x,y)
+Square and cubic root.
+@item sinh(x), cosh(x), tanh(x)
+@itemx asinh(x), acosh(x), atanh(x)
+Hyperbolic functions.
+@item fabs(x), fmod(x,y)
+Absolute value and remainder function. 
+@end table
+
+Further elements that build up the expressions are:
+
+@table @code
+@item +, -, *, /
+addition, subtraction, multiplication, division
+@item (, )
+braces
+@item !=, ==, <, >, <=, >=
+(un)equality, comparison
+@item &, |, !
+logical and, or, and not
+@end table
+
+Maybe an example helps to illustrate this:
+
+@example
+dsdel -t "(fabs(x)<20)&(y>=pi-1)" @var{id}
+@end example
+
+This command deletes all datapoints with
+@ifnottex
+@math{|x|<20} and @math{y>=pi-1}.
+@end ifnottex
+@tex
+$|x|<20$ and $y\ge\pi-1$.
+@end tex

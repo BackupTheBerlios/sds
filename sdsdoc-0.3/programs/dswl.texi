@@ -1,0 +1,95 @@
+The program @code{dswl} uses the non-linear least square fit method to
+evaluate magneto-conductance measurements that show the signatures of
+2D weak localization.  A simplified formula is used (see, e.g., the
+PhD thesis of Roland Sch@"afer):
+@ifnottex
+
+@display
+@math{dG_sq(B) / L_00 = 1.5*F(0.5 + B_tr/B) - 0.5*F(0.5 + B_si/B)
+                  + log(B) + 0.5*log(B_si) - 1.5*log(B_tr)},
+@end display
+
+@end ifnottex
+@tex
+$$ \delta{}G_{\rm sq}(B) / L_{00} = 
+    {3\over 2} \Psi\left({1\over 2}+{B_{\rm tr}\over B}\right)
+    - {1\over 2} \Psi\left({1\over 2}+{B_{\rm si}\over B}\right)
+    + \log(B) + {1\over 2} \log(B_{\rm si}) - {3\over 2} \log(B_{\rm
+    tr})\,, 
+$$
+@end tex
+where 
+@ifnottex
+@math{F(x)}
+@end ifnottex
+@tex
+$\Psi(x)$
+@end tex
+denotes the digamma function. The singlet and triplet fields are
+related to the phase coherence, spin-orbit and spin-flip fields:
+@ifnottex
+
+@display
+@math{B_tr = (4/3)*B_so + (2/3)*B_sf + B_phi},  @math{B_si = 2*B_sf + B_phi}
+@end display
+
+@end ifnottex
+@tex
+$$B_{\rm tr}={4\over 3}B_{\rm so}+{2\over 3}B_{\rm sf}+B_\phi\,,\qquad
+  B_{\rm si}=2B_{\rm sf} + B_\phi $$
+@end tex
+From these fields, the corresponding scattering time can be
+calculated:
+@ifnottex
+@math{tau_x = h / (8 pi e D B_x)}.
+@end ifnottex
+@tex
+$ \tau_x=h/(8\pi{}e D B_x)\,. $
+@end tex
+
+Call @command{dswl} like this:
+
+@example
+dswl [options] ID(s)
+@end example
+
+In addition to the options common to all fit routines, the following
+fit parameters can be passed on the command line in the usual way
+(@pxref{Least Square Fit}):
+
+@table @code
+@item A
+Amplitude of the weak localization.  The default value is 1.
+@item B_si
+The singlet field.  The default value is 1. 
+@item b
+The ratio of the triplet to the singlet field:
+@ifnottex
+@math{@code{b}=B_tr/B_si}.
+@end ifnottex
+@tex
+$@code{b}=B_{\rm tr}/B_{\rm si}$.
+@end tex
+Default is @math{@code{b}=1}.
+@item B0
+Offset for the x-array (default is 0).
+@item G0
+Offset for the y-array (default is 0).
+@end table
+
+The input data should represent the correction to the conductance in
+units of
+@ifnottex
+@math{L_00=e^2/(pi*h)}
+@end ifnottex
+@tex
+$L_{00}=e^2/(\pi{}h)$
+@end tex 
+as a function of the magnetic field, with @math{y(0)=0}. 
+The ratio @code{b} was introduced so that only one parameter
+(@code{B_si}) is concerned with the absolute value of the field
+scale.  In the simple case (no spin-flip scattering), @code{b} is
+a measure for the importance of the spin-orbit scattering. 
+
+In interactive mode, the parameters do not have to be capitalized.
+@code{Bsi} is also accepted instead of @code{B_si}. 

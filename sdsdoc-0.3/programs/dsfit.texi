@@ -1,0 +1,20 @@
+With @command{dsfit}, you can fit a polynomial to your data.  On the
+one hand, @command{dsfit} is @emph{the} prototype fit program, on the
+other hand, some aspects are specific to fitting polynomials.  Most
+prominently, there is no fixed set of fit parameters.  In principle,
+you can use up to 26 parameters (@code{a}--@code{z}), corresponding to
+a polynomal of 25th degree.  However, the program only considers the
+parameters up to the highest degree specified by the user, expanding
+the parameter set on demand (e.g. in interactive mode).
+
+Apart from that, the usage of @command{dsfit} is rather
+straightforward.  The general commands are as described in the
+preceding sections.  The fit parameters are denoted by the lower-case
+letters.  The fit function then is 
+@tex
+$$ a + b*x + c*x^2 + d*x^3 \ldots\,. $$ 
+@end tex
+@ifnottex
+@math{a + b*x + c*x^2 + d*x^3 @enddots{}}
+@end ifnottex
+

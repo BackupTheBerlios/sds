@@ -1,0 +1,67 @@
+Not too many programs in the qpl-packages act on more than one dataset
+at a time.  The most simple operations on multiple datasets are
+addition, subtraction, multiplication, and division.  Yet even these
+have non-trivial aspects:  the corresponding commands @command{dsadd}
+and @command{dsmul} only work on datasets that share a common x-axis.
+Use other tools, e.g. dsspline (@pxref{dsspline}) to ensure this. 
+
+Apart from the options, @command{dsadd} and @command{dsmul} have to be
+passed a list of IDs on the command line.  All of the corresponding
+datasets are then combined into one.  Usage:
+
+@example
+dsadd [-n] [-p|-m|-f @var{fact}] IDs
+@end example
+
+The options are:
+
+@table @code
+@item -n
+@itemx --new
+Create a new data set to store the result.  The new ID is printed on
+standard output in the form @code{new id=@var{id}}. 
+@item -f @var{fact}
+@itemx --factor=@var{fact}
+The @var{fact} argument is a comma separated list of numbers, one
+for each ID.  Each dataset's y-array is multiplied by the
+corresponding factor before adding.
+@item -p
+@itemx --plus
+Average all datasets, i.e. assume a factor of @math{1/@var{n}} for
+each dataset, where @var{n} is the number of datasets. 
+@item -m
+@itemx --minus
+Subtract all datasets from the first one, i.e. assume a factor of
+@math{-1} for all but the first
+@end table
+
+If none of the @code{-p}, @code{-m}, or @code{-f} options is given, a
+factor of 1 is assumed for all datasets.
+
+Multiplication and division works along the same lines:
+
+@example
+dsmul [-n] [-m|-d|-e @var{exp}] IDs
+@end example
+
+The options are:
+
+@table @code
+@item 
+@item -n
+@itemx --new
+Create a new data set to store the result.
+@item -e @var{exp}
+@itemx --exponent=@var{exp}
+The @var{exp} argument is a comma separated list of exponents applied
+to each dataset before multiplying.
+@item -m
+@itemx --multiply
+Multiply all datasets, i.e. assume all exponents to be 1.  This is the
+default. 
+@item -d
+@itemx --divide
+Divide the first dataset by all the others, i.e. assume an exponent of
+@math{-1} for all datasets but the first. 
+@end table
+

@@ -1,0 +1,145 @@
+The Fourier transformation of a function @math{f(x)} is defined as
+@ifnottex
+
+@display
+@math{F(n) = integral( f(x)*exp(-2*pi*i*x*n), x )}.
+@end display
+@end ifnottex
+@tex
+$$F(\bar{\nu})=\int_{-\infty}^{+\infty}{\rm
+d}x\,f(x)e^{-2\pi{}ix\bar{\nu}}\,.$$
+@end tex
+
+There is some ambiguity in this definition concerning the sign of the
+exponent and the norm of the transformation.  However, the back
+transformation should re-create @math{f(x)}.
+
+In the case of discrete datapoints on a finite x-interval, the
+transformation has to be modified slightly.  The data is assumed to be
+continued periodically.  The Fourier coefficients are therefore
+divided by the number of datapoints, @math{N}, to keep them
+independent of the length of the interval or the data density:
+@ifnottex
+
+@display
+@math{F_n= (1/N) * sum( f_k*exp(-2*pi*i*k*n/N), k )}.
+@end display
+@end ifnottex
+@tex
+$$F_n=(1/N)\cdot\sum_{k}f_ke^{-2\pi{}ikn/N}.$$
+@end tex
+
+The program @command{dsft} uses the above definition to calculate the
+Fourier transform of the given datasets (naturally, the y-values are
+taken for the coefficients 
+@ifnottex
+@math{f_k}
+@end ifnottex
+@tex
+$f_k$
+@end tex
+and 
+@ifnottex
+@math{F_n}
+@end ifnottex
+@tex
+$F_n$
+@end tex
+).  It uses the FFT and FHT routines as implemented by Ron Meyer (see
+the comments in the source code).  @strong{Caution}!  Some important
+assumptions are made:
+
+@enumerate
+@item
+The number of datapoints, @var{n},  has to be an integer power of 2
+(@math{@var{n}=4}, 8, 16, @dots{}) -- @emph{except} for the special
+case of the back transform of a dataset created with the @code{-0}
+option (see below), which has @math{@var{n}/2+1} datapoints. 
+@item
+The periodicity condition is @math{y[@var{n}]=y[0]} (and not
+@math{y[@var{n}-1]=y[0]}).  Thus, the true period is
+@math{T=(@var{max}-@var{min})*[@var{n}/(@var{n}-1)]}, where @var{min}
+and @var{max} are the minimal and maximal x-value, respectively.
+Fence-building can be tricky!
+@item
+It would be natural for the discrete Fourier transform to use the
+interval boundary as a reference for the phase of the exponential,
+i.e. @math{k=0} in the definition given above.  However,
+@command{dsft} takes the probably more intuitive approach and fixes
+the phase relative to @math{x=0}, wrapping the data-arrays
+accordingly.  This is important for the Fourier transformation to obey
+the usual symmetry relations.
+@item
+While the transformation itself is independent of the x-array,
+@command{dsft} adjusts it to represent a `time' or `frequency'.  The
+spacing of the discrete frequencies is given by the inverse period
+@math{1/T}.  Canonically, the @var{n} Fourier coefficients are
+assigned positive and negative frequencies from
+@math{(-@var{n}/2+1)/T} to @math{@var{n}/(2T)}.  When transforming
+back to the time domain, the x-values are assigned in the same manner
+with @math{x=0} in the center.
+@end enumerate
+
+A spline interpolation (@pxref{dsspline}) can be useful to prepare the
+data for a Fourier transformation.  With @math{@var{x}=T/2} and 
+@ifnottex
+@math{@var{n}=2^m+1}:
+@end ifnottex
+@tex
+$@var{n}=2^m+1$:
+@end tex
+
+@example
+dsspline -i @math{-@var{x}} -a @math{+@var{x}} -n @var{n} @var{id} ;
+dsdel -t i==0 @var{id}
+@end example
+
+Other common methods are zero-padding (@pxref{dspad}), or `windowing',
+i.e. multiplying the data with a smooth envelope function. 
+
+The program @command{dsft} is used as followed:
+
+@example
+dsft [-t|-b] [options] ID(s)
+@end example
+
+The options are:
+
+@table @code
+@item -t
+@itemx --transform
+Transform to the frequency domain.  This is the default action.
+@item -b
+@itemx --back
+Transform from the frequency domain.
+@item -r
+@itemx --real
+Calculate the real part of the Fourier coefficients.
+@item -i
+@itemx --imag
+Calculate the imaginary part of the Fourier coefficients.
+@item -a
+@itemx --amplitude
+Calculate the amplitude of the Fourier coefficients.
+@item -p
+@itemx --phase
+Calculate the phase of the Fourier coefficients.
+@item -c
+@itemx --complex
+The input data is complex.  In this mode, the IDs have to be given in
+pairs, representing the real and imaginary part, respectively, in an
+alternating sequence.  The input data has to have matching x-arrays. 
+@item -0
+@itemx --positiv
+Limit the output to just the @math{@var{n}/2+1} non-negative
+x-values. This option is only accepted for real-valued input.
+@end table
+
+Unless the @code{-c} option is specified, the input data is assumed to
+be a list of single datasets with real (i.e. not complex)
+coefficients.  For each of the options @code{-r}, @code{-i},
+@code{-a}, or @code{-p} specified, a new dataset is created (in that
+order), containing the corresponding value of the Fourier
+coefficients.  If none of these options is given, @code{-ri} is
+assumed.  The new IDs are printed to standard output in the form
+@code{new id=@var{id}}, with one line for each ID.

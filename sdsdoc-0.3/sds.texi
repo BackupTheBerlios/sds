@@ -1,0 +1,81 @@
+\input texinfo   @c -*-texinfo-*-
+@c %**start of header
+@setfilename sds.info
+@settitle sds documentation
+@documentlanguage en
+@afourpaper
+@dircategory data evaluation with the sds packages
+@direntry
+* sds: (sds).     plot and manipulate datasets
+@end direntry
+@c %**end of header
+
+@titlepage
+@title Shared Data Tools
+@subtitle Users Guide
+@author Peter vom Stein
+@end titlepage
+
+@contents
+
+@ifnottex
+
+@node    Top
+@top sds documentation
+
+This is an effort to provide information on the sds packages that
+might be important for its users.
+ 
+@end ifnottex
+
+@menu
+* Intro::    An introductory overview
+* Concepts:: The design of sds
+* Packages:: The structure of the sds packages
+* Programs:: Detailed information on the individual programs
+* Indices::  Quick reference
+@end menu
+
+
+@include intro.texi
+
+@include concepts.texi
+
+@include packages.texi
+
+@include programs.texi
+
+@node Indices
+@appendix Indices
+
+@c For convenience, a summary of the programs and environment variables
+@c is given.
+
+@menu
+* Program Index::
+* Concept Index::
+* Variable Index::
+@end menu
+
+@node Program Index
+@appendixsection Program Index
+
+@printindex pg
+
+@node Concept Index
+@appendixsection Concept Index
+
+@printindex cp
+
+@node Variable Index
+@appendixsection Variable Index
+
+@printindex vr
+
+
+@bye
+
+
+
+
+

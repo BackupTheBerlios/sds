@@ -1,0 +1,84 @@
+It is not always practical to handle the IDs passed to the various
+programs by hand, especially with a larger number of datasets.
+Rather, one might group the IDs, discriminating them e.g. by the
+plotlevel or linecolor.  The program @command{dsf} can be used to find
+all the IDs matching a certain criterion.  Calling @command{dsf}
+without any parameters lists all IDs in the data segment.  The shell's
+command substitution (@pxref{Command Substitution,,,bash,The GNU Bash
+Reference Manual}) offers a convenient way to combine @command{dsf}
+with other commands, as in, e.g.
+
+@example
+dsrm `dsf` .
+@end example
+
+The search operation is controlled by a set of command line arguments.
+The matching pattern provided to these is either a range of integers
+(or a list of ranges), or a regular expression.  In addition, you can
+limit the search to a given range of IDs.  Specifying more than one
+option amounts to a logical AND operation.  You can invert the
+matching conditions with the @code{-r} option.  Here is the detailed
+usage: 
+
+@example
+dsf [options] [ID-range]
+@end example
+
+The options are:
+
+@table @code
+@item -n @var{range}
+@itemx --NoP=@var{range}
+Match datasets with number of points in the given @var{range}.
+@item -p @var{range}
+@itemx --plevel=@var{range}
+Match the dataset's plotlevel.
+@item -b @var{regexp}
+@itemx --linestyle=@var{regexp}
+The dataset's linestyle (@pxref{dssp}) matches @var{regexp}. 
+@item -u @var{range}
+@itemx --linewidth=@var{range}
+The dataset's linewidth is in the given @var{range}. 
+@item -c @var{regexp}
+@itemx --linecolor=@var{regexp}
+The dataset's linecolor (@pxref{dssp}) matches @var{regexp}. 
+@item -k @var{regexp}
+@itemx --symbolstyle=@var{regexp}
+The dataset's symbolstyle (@pxref{dssp}) matches @var{regexp}. 
+@item -e @var{range}
+@itemx --symbolsize=@var{range}
+The dataset's symbolsize is in the given @var{range}. 
+@item -t @var{regexp}
+@itemx --symbolcolor=@var{regexp}
+The dataset's symbolcolor (@pxref{dssp}) matches @var{regexp}. 
+@item -i @var{regexp}
+@itemx --ident=@var{regexp}
+Select datasets whose ident-strings match @var{regexp}.
+@item -I @var{n}
+@itemx --Ident=@var{n}
+Limit the search of the ident-strings to the ident-array's first
+@var{n} elements. 
+@item -r
+@itemx  --reverse
+Reverse the match, i.e. list the IDs @emph{not} matching the given
+patterns. 
+@end table
+
+A @var{range} is a comma separated list of integer ranges following
+these rules:
+
+@table @code
+@item @var{n}
+Match the single number @var{n}.
+@item @var{n}-@var{m}
+Match all numbers between @var{n} and @var{m} (including @var{n} and
+@var{m}). 
+@item @var{n}-
+Match all numbers greater or equal to @var{n}.
+@item -@var{n}
+Match all numbers from 0 to (and including) @var{n}.
+@end table
+
+For an introduction to regular expressions, see
+e.g. @ref{Regexp,,Regular Expressions,gawk,GAWK: Effective AWK
+Programming: A User's Guide for GNU Awk}.  

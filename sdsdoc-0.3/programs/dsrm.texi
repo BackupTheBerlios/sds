@@ -1,0 +1,9 @@
+The program @command{dsrm} is called to remove datasets from the
+central data segment.  Usage:
+
+@example
+dsrm ID(s)
+@end example
+
+There are no specific options, just supply a list of IDs to be
+removed.
