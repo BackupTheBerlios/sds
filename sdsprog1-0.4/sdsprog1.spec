@@ -1,7 +1,7 @@
 Summary: qpl is used to view datas located in shared memory segments
 Name: sdsprog1 
 Version: 0.4
-Release: 2
+Release: 3
 Copyright: GPL
 Group: Applications/Graphics
 Source: sdsprog1-0.4.tar.gz

@@ -1,5 +1,5 @@
 VERSION=0.4
-RELEASE=2
+RELEASE=3
 SDSPROG=sdsprog1-$(VERSION)
 
 all:
