@@ -5,7 +5,7 @@ CPPFLAGS=-Wall -D_GNU_SOURCE -g -I$(INCLUDE_DIR)
 #LDFLAGS=-g -L$(LIB_DIR) -L/usr/lib/termcap
 LDFLAGS=-g 
 #LDFLAGS=-g
-LOADLIBES=-lm -lsd
+LOADLIBES=-lm -lsd -lstdc++
 
 INCLUDE_DIR=/usr/local/include/sd
 

@@ -4,7 +4,7 @@ CPPFLAGS=-Wall -D_GNU_SOURCE -g -I$(INCLUDE_DIR)
 #CPPFLAGS=-Wall -D_GNU_SOURCE -g
 #LDFLAGS=-g -L$(LIB_DIR) -L/usr/lib/termcap
 LDFLAGS=-g -L/usr/lib/termcap
-LOADLIBES= -lm -lfl -lsd -lfn -lapprox -lg2c -lreadline -ltermcap
+LOADLIBES= -lm -lfl -lsd -lfn -lapprox -lg2c -lreadline -ltermcap -lstdc++
 
 YACC=bison
 YFLAGS=-d -y -pdsfit_yy
