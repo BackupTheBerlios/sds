@@ -187,7 +187,7 @@ static struct option const long_options[] =
 	{0, 0, 0, 0}
 };
 
-char verstring[] = "$Id: dswl.cc,v 1.1 2003/01/23 15:12:07 vstein Exp $";
+char verstring[] = "$Id: dswl.cc,v 1.2 2003/07/08 14:05:37 vstein Exp $";
 
 extern char *program_invocation_short_name;
 
@@ -775,7 +775,6 @@ void fitit(const char *idstr, integer iopt, integer itera,
 			}
 			i=1;
 			fitfunc_(&i,&newn,&n,x,ys,NULL,NULL);
-			free(yuse);
 			for(i=0;i<newn;i++)
 				ys[i]*=sigma(xs[i]);
 		} else {                       // REP_MODE & ~RES_MODE
@@ -817,26 +816,26 @@ void fitit(const char *idstr, integer iopt, integer itera,
 				      program_invocation_short_name);
 			yuse=(doublereal *)xmalloc(sizeof(doublereal)*newn);
 			if(nop!=-1) {
-			for(i=0;i<newn;i++) {
-				xn[i]=min+
-					(double)i/(double)(newn-1)*
-					(max-min);
-				yuse[i]=0.0;
+				for(i=0;i<newn;i++) {
+					xn[i]=min+
+						(double)i/(double)(newn-1)*
+						(max-min);
+					yuse[i]=0.0;
+				}
+			} else {
+				xs=sd->x(id);
+				for(i=0;i<newn;i++) {
+					xn[i]=xs[i];
+					yuse[i]=0.0;
+				}
 			}
-		} else {
-			xs=sd->x(id);
-			for(i=0;i<newn;i++) {
-				xn[i]=xs[i];
-				yuse[i]=0.0;
-			}
-		}
-		i=1;
-		xuse=xn;
-		fitfunc_(&i,&newn,&n,x,yn,NULL,NULL);
-		free(yuse);
-		for(i=0;i<newn;i++)
-			yn[i]*=-sigma(xn[i]);
-
+			i=1;
+			xuse=xn;
+			fitfunc_(&i,&newn,&n,x,yn,NULL,NULL);
+			free(yuse);
+			for(i=0;i<newn;i++)
+				yn[i]*=-sigma(xn[i]);
+			
 		}
 	}
 
