@@ -1,14 +1,13 @@
 /* 
  * $Author: vstein $ 
- * $Revision: 1.1 $
- * $Id: parea.cc,v 1.1 2003/01/23 14:50:49 vstein Exp $
+ * $Revision: 1.2 $
+ * $Id: parea.cc,v 1.2 2004/02/08 21:09:08 vstein Exp $
 */
 
 #include <parea.h>
 #include <math.h>
 #include <qpainter.h>
 #include <qpixmap.h>
-#include <fstream.h>
 #include <stdio.h>
 #include <float.h>
 #include <limits.h>
