@@ -1,5 +1,5 @@
 VERSION=0.3
-RELEASE=9
+RELEASE=10
 RSDSDIR=sdsbase-$(VERSION)
 
 all:

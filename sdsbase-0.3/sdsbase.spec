@@ -1,7 +1,7 @@
 Summary: qpl is used to view datas located in shared memory segments
 Name: sdsbase
 Version: 0.3
-Release: 9
+Release: 10 
 Copyright: GPL
 Group: Applications/Graphics
 Source: sdsbase-0.3.tar.gz
