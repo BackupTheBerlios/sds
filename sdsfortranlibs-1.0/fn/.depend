@@ -1,0 +1,1047 @@
+F acosh.f
+D acosh_
+R r1mach_
+R xermsg_
+
+F ai.f
+D ai_
+R aie_
+R csevl_
+R inits_
+R r1mach_
+R r9aimp_
+R xermsg_
+
+F aie.f
+D aie_
+R csevl_
+R inits_
+R r1mach_
+R r9aimp_
+
+F albeta.f
+D albeta_
+R alngam_
+R alnrel_
+R gamma_
+R r9lgmc_
+R xermsg_
+
+F algams.f
+D algams_
+R alngam_
+
+F ali.f
+D ali_
+R ei_
+R xermsg_
+
+F alngam.f
+D alngam_
+R gamma_
+R r1mach_
+R r9lgmc_
+R xermsg_
+
+F alnrel.f
+D alnrel_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F asinh.f
+D asinh_
+R csevl_
+R inits_
+R r1mach_
+
+F atanh.f
+D atanh_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F besi0.f
+D besi0_
+R besi0e_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F besi0e.f
+D besi0e_
+R csevl_
+R inits_
+R r1mach_
+
+F besi1.f
+D besi1_
+R besi1e_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F besi1e.f
+D besi1e_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F besj0.f
+D besj0_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F besj1.f
+D besj1_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F besk0.f
+D besk0_
+R besi0_
+R besk0e_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F besk0e.f
+D besk0e_
+R besi0_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F besk1.f
+D besk1_
+R besi1_
+R besk1e_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F besk1e.f
+D besk1e_
+R besi1_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F beskes.f
+D beskes_
+R r1mach_
+R r9knus_
+R xermsg_
+
+F besks.f
+D besks_
+R beskes_
+R r1mach_
+R xermsg_
+
+F besy0.f
+D besy0_
+R besj0_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F besy1.f
+D besy1_
+R besj1_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F beta.f
+D beta_
+R albeta_
+R gamlim_
+R gamma_
+R r1mach_
+R xermsg_
+
+F betai.f
+D betai_
+R albeta_
+R r1mach_
+R xermsg_
+
+F bi.f
+D bi_
+R bie_
+R csevl_
+R inits_
+R r1mach_
+R r9aimp_
+R xermsg_
+
+F bie.f
+D bie_
+R csevl_
+R inits_
+R r1mach_
+R r9aimp_
+
+F binom.f
+D binom_
+R alnrel_
+R r1mach_
+R r9lgmc_
+R xermsg_
+
+F c0lgmc.f
+D c0lgmc_
+R c9ln2r_
+R r1mach_
+
+F c9lgmc.f
+D c9lgmc_
+R r1mach_
+R xermsg_
+
+F c9ln2r.f
+D c9ln2r_
+R r9atn1_
+R r9ln2r_
+
+F cacos.f
+D cacos_
+R casin_
+
+F cacosh.f
+D cacosh_
+R cacos_
+
+F carg.f
+
+F casin.f
+D casin_
+R r1mach_
+
+F casinh.f
+D casinh_
+R casin_
+
+F catan.f
+D catan_
+R r1mach_
+R xermsg_
+
+F catan2.f
+D catan2_
+R catan_
+R xermsg_
+
+F catanh.f
+D catanh_
+R catan_
+
+F cbeta.f
+D cbeta_
+R cgamma_
+R clbeta_
+R gamlim_
+R xermsg_
+
+F cbrt.f
+D cbrt_
+R r1mach_
+R r9pak_
+R r9upak_
+
+F ccbrt.f
+D ccbrt_
+R carg_
+R cbrt_
+
+F ccosh.f
+D ccosh_
+
+F ccot.f
+D ccot_
+R r1mach_
+R xerclr_
+R xermsg_
+
+F cexprl.f
+D cexprl_
+R r1mach_
+
+F cgamma.f
+D cgamma_
+R clngam_
+
+F cgamr.f
+D cgamr_
+R clngam_
+R xerclr_
+R xgetf_
+R xsetf_
+
+F chu.f
+D chu_
+R exprel_
+R gamma_
+R gamr_
+R poch1_
+R poch_
+R r1mach_
+R r9chu_
+R xermsg_
+
+F clbeta.f
+D clbeta_
+R clngam_
+R xermsg_
+
+F clngam.f
+D clngam_
+R c9lgmc_
+R carg_
+R clnrel_
+R r1mach_
+R xermsg_
+
+F clnrel.f
+D clnrel_
+R alnrel_
+R carg_
+R r1mach_
+R xermsg_
+
+F clog10.f
+D clog10_
+
+F cosdg.f
+D cosdg_
+
+F cot.f
+D cot_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F cpsi.f
+D cpsi_
+R ccot_
+R r1mach_
+R xermsg_
+
+F csevl.f
+D csevl_
+R r1mach_
+R xermsg_
+
+F csinh.f
+D csinh_
+
+F ctan.f
+D ctan_
+R r1mach_
+R xerclr_
+R xermsg_
+
+F ctanh.f
+D ctanh_
+R ctan_
+
+F d9aimp.f
+D d9aimp_
+R d1mach_
+R dcsevl_
+R initds_
+R xermsg_
+
+F d9atn1.f
+D d9atn1_
+R d1mach_
+R dcsevl_
+R initds_
+R xermsg_
+
+F d9b0mp.f
+D d9b0mp_
+R d1mach_
+R dcsevl_
+R initds_
+R xermsg_
+
+F d9b1mp.f
+D d9b1mp_
+R d1mach_
+R dcsevl_
+R initds_
+R xermsg_
+
+F d9chu.f
+D d9chu_
+R d1mach_
+R xermsg_
+
+F d9gmic.f
+D d9gmic_
+R d1mach_
+R dlngam_
+R xermsg_
+
+F d9gmit.f
+D d9gmit_
+R d1mach_
+R dlngam_
+R xermsg_
+
+F d9knus.f
+D d9knus_
+R d1mach_
+R dcsevl_
+R dgamma_
+R initds_
+R xermsg_
+
+F d9lgic.f
+D d9lgic_
+R d1mach_
+R xermsg_
+
+F d9lgit.f
+D d9lgit_
+R d1mach_
+R xermsg_
+
+F d9lgmc.f
+D d9lgmc_
+R d1mach_
+R dcsevl_
+R initds_
+R xermsg_
+
+F d9ln2r.f
+D d9ln2r_
+R d1mach_
+R dcsevl_
+R initds_
+R xermsg_
+
+F d9pak.f
+D d9pak_
+R d1mach_
+R d9upak_
+R i1mach_
+R xermsg_
+
+F d9upak.f
+D d9upak_
+
+F dacosh.f
+D dacosh_
+R d1mach_
+R xermsg_
+
+F dai.f
+D dai_
+R d1mach_
+R d9aimp_
+R daie_
+R dcsevl_
+R initds_
+R xermsg_
+
+F daie.f
+D daie_
+R d1mach_
+R d9aimp_
+R dcsevl_
+R initds_
+
+F dasinh.f
+D dasinh_
+R d1mach_
+R dcsevl_
+R initds_
+
+F datanh.f
+D datanh_
+R d1mach_
+R dcsevl_
+R initds_
+R xermsg_
+
+F daws.f
+D daws_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F dbesi0.f
+D dbesi0_
+R d1mach_
+R dbsi0e_
+R dcsevl_
+R initds_
+R xermsg_
+
+F dbesi1.f
+D dbesi1_
+R d1mach_
+R dbsi1e_
+R dcsevl_
+R initds_
+R xermsg_
+
+F dbesj0.f
+D dbesj0_
+R d1mach_
+R d9b0mp_
+R dcsevl_
+R initds_
+
+F dbesj1.f
+D dbesj1_
+R d1mach_
+R d9b1mp_
+R dcsevl_
+R initds_
+R xermsg_
+
+F dbesk0.f
+D dbesk0_
+R d1mach_
+R dbesi0_
+R dbsk0e_
+R dcsevl_
+R initds_
+R xermsg_
+
+F dbesk1.f
+D dbesk1_
+R d1mach_
+R dbesi1_
+R dbsk1e_
+R dcsevl_
+R initds_
+R xermsg_
+
+F dbesks.f
+D dbesks_
+R d1mach_
+R dbskes_
+R xermsg_
+
+F dbesy0.f
+D dbesy0_
+R d1mach_
+R d9b0mp_
+R dbesj0_
+R dcsevl_
+R initds_
+R xermsg_
+
+F dbesy1.f
+D dbesy1_
+R d1mach_
+R d9b1mp_
+R dbesj1_
+R dcsevl_
+R initds_
+R xermsg_
+
+F dbeta.f
+D dbeta_
+R d1mach_
+R dgamlm_
+R dgamma_
+R dlbeta_
+R xermsg_
+
+F dbetai.f
+D dbetai_
+R d1mach_
+R dlbeta_
+R xermsg_
+
+F dbi.f
+D dbi_
+R d1mach_
+R d9aimp_
+R dbie_
+R dcsevl_
+R initds_
+R xermsg_
+
+F dbie.f
+D dbie_
+R d1mach_
+R d9aimp_
+R dcsevl_
+R initds_
+
+F dbinom.f
+D dbinom_
+R d1mach_
+R d9lgmc_
+R dlnrel_
+R xermsg_
+
+F dbsi0e.f
+D dbsi0e_
+R d1mach_
+R dcsevl_
+R initds_
+
+F dbsi1e.f
+D dbsi1e_
+R d1mach_
+R dcsevl_
+R initds_
+R xermsg_
+
+F dbsk0e.f
+D dbsk0e_
+R d1mach_
+R dbesi0_
+R dcsevl_
+R initds_
+R xermsg_
+
+F dbsk1e.f
+D dbsk1e_
+R d1mach_
+R dbesi1_
+R dcsevl_
+R initds_
+R xermsg_
+
+F dbskes.f
+D dbskes_
+R d1mach_
+R d9knus_
+R xermsg_
+
+F dcbrt.f
+D dcbrt_
+R d1mach_
+R d9pak_
+R d9upak_
+
+F dchu.f
+D dchu_
+R d1mach_
+R d9chu_
+R dexprl_
+R dgamma_
+R dgamr_
+R dpoch1_
+R dpoch_
+R xermsg_
+
+F dcosdg.f
+D dcosdg_
+
+F dcot.f
+D dcot_
+R d1mach_
+R dcsevl_
+R initds_
+R xermsg_
+
+F dcsevl.f
+D dcsevl_
+R d1mach_
+R xermsg_
+
+F ddaws.f
+D ddaws_
+R d1mach_
+R dcsevl_
+R initds_
+R xermsg_
+
+F de1.f
+D de1_
+R d1mach_
+R dcsevl_
+R initds_
+R xermsg_
+
+F dei.f
+D dei_
+R de1_
+
+F derf.f
+D derf_
+R d1mach_
+R dcsevl_
+R derfc_
+R initds_
+
+F derfc.f
+D derfc_
+R d1mach_
+R dcsevl_
+R initds_
+R xermsg_
+
+F dexprl.f
+D dexprl_
+R d1mach_
+
+F dfac.f
+D dfac_
+R d9lgmc_
+R dgamlm_
+R xermsg_
+
+F dgami.f
+D dgami_
+R dgamit_
+R dlngam_
+R xermsg_
+
+F dgamic.f
+D dgamic_
+R d1mach_
+R d9gmic_
+R d9gmit_
+R d9lgic_
+R d9lgit_
+R dlgams_
+R dlngam_
+R xerclr_
+R xermsg_
+
+F dgamit.f
+D dgamit_
+R d1mach_
+R d9gmit_
+R d9lgic_
+R d9lgit_
+R dgamr_
+R dlgams_
+R dlngam_
+R xerclr_
+R xermsg_
+
+F dgamlm.f
+D dgamlm_
+R d1mach_
+R xermsg_
+
+F dgamma.f
+D dgamma_
+R d1mach_
+R d9lgmc_
+R dcsevl_
+R dgamlm_
+R initds_
+R xermsg_
+
+F dgamr.f
+D dgamr_
+R dgamma_
+R dlgams_
+R xerclr_
+R xgetf_
+R xsetf_
+
+F dlbeta.f
+D dlbeta_
+R d9lgmc_
+R dgamma_
+R dlngam_
+R dlnrel_
+R xermsg_
+
+F dlgams.f
+D dlgams_
+R dlngam_
+
+F dli.f
+D dli_
+R dei_
+R xermsg_
+
+F dlngam.f
+D dlngam_
+R d1mach_
+R d9lgmc_
+R dgamma_
+R xermsg_
+
+F dlnrel.f
+D dlnrel_
+R d1mach_
+R dcsevl_
+R initds_
+R xermsg_
+
+F dpoch.f
+D dpoch_
+R d9lgmc_
+R dcot_
+R dfac_
+R dgamma_
+R dgamr_
+R dlgams_
+R dlnrel_
+R xermsg_
+
+F dpoch1.f
+D dpoch1_
+R d1mach_
+R dcot_
+R dexprl_
+R dpoch_
+R dpsi_
+R xermsg_
+
+F dpsi.f
+D dpsi_
+R d1mach_
+R dcot_
+R dcsevl_
+R initds_
+R xermsg_
+
+F dsindg.f
+D dsindg_
+
+F dspenc.f
+D dspenc_
+R d1mach_
+R dcsevl_
+R initds_
+
+F e1.f
+D e1_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F ei.f
+D ei_
+R e1_
+
+F erf.f
+D erf_
+R csevl_
+R erfc_
+R inits_
+R r1mach_
+
+F erfc.f
+D erfc_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F exprel.f
+D exprel_
+R r1mach_
+
+F fac.f
+D fac_
+R gamlim_
+R r9lgmc_
+R xermsg_
+
+F gami.f
+D gami_
+R alngam_
+R gamit_
+R xermsg_
+
+F gamic.f
+D gamic_
+R algams_
+R alngam_
+R r1mach_
+R r9gmic_
+R r9gmit_
+R r9lgic_
+R r9lgit_
+R xerclr_
+R xermsg_
+
+F gamit.f
+D gamit_
+R algams_
+R alngam_
+R gamr_
+R r1mach_
+R r9gmit_
+R r9lgic_
+R r9lgit_
+R xerclr_
+R xermsg_
+
+F gamlim.f
+D gamlim_
+R r1mach_
+R xermsg_
+
+F gamma.f
+D gamma_
+R csevl_
+R gamlim_
+R inits_
+R r1mach_
+R r9lgmc_
+R xermsg_
+
+F gamr.f
+D gamr_
+R algams_
+R gamma_
+R xerclr_
+R xgetf_
+R xsetf_
+
+F initds.f
+D initds_
+R xermsg_
+
+F inits.f
+D inits_
+R xermsg_
+
+F poch.f
+D poch_
+R algams_
+R alnrel_
+R cot_
+R fac_
+R gamma_
+R gamr_
+R r9lgmc_
+R xermsg_
+
+F poch1.f
+D poch1_
+R cot_
+R exprel_
+R poch_
+R psi_
+R r1mach_
+R xermsg_
+
+F psi.f
+D psi_
+R cot_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F r9aimp.f
+D r9aimp_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F r9atn1.f
+D r9atn1_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F r9chu.f
+D r9chu_
+R r1mach_
+R xermsg_
+
+F r9gmic.f
+D r9gmic_
+R alngam_
+R r1mach_
+R xermsg_
+
+F r9gmit.f
+D r9gmit_
+R alngam_
+R r1mach_
+R xermsg_
+
+F r9knus.f
+D r9knus_
+R csevl_
+R gamma_
+R inits_
+R r1mach_
+R xermsg_
+
+F r9lgic.f
+D r9lgic_
+R r1mach_
+R xermsg_
+
+F r9lgit.f
+D r9lgit_
+R r1mach_
+R xermsg_
+
+F r9lgmc.f
+D r9lgmc_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F r9ln2r.f
+D r9ln2r_
+R csevl_
+R inits_
+R r1mach_
+R xermsg_
+
+F r9pak.f
+D r9pak_
+R i1mach_
+R r1mach_
+R r9upak_
+R xermsg_
+
+F r9upak.f
+D r9upak_
+
+F rand.f
+D rand_
+
+F rgauss.f
+D rgauss_
+R rand_
+
+F runif.f
+D runif_
+R rand_
+
+F sindg.f
+D sindg_
+
+F spenc.f
+D spenc_
+R csevl_
+R inits_
+R r1mach_
+

@@ -1,0 +1,815 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<TITLE>/netlib/slatec/fnlib</TITLE>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#330088" ALINK="#FF0044">
+<H2>/netlib/slatec/fnlib</H2>
+<UL>
+<LI><EM>file: </EM><A HREF="acosh.f.gz">acosh.f</A><MENU>
+<LI><EM>for: </EM>Compute the arc hyperbolic cosine.
+<LI><EM>gams: </EM>C4C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="ai.f.gz">ai.f</A><MENU>
+<LI><EM>for: </EM>Evaluate the Airy function.
+<LI><EM>gams: </EM>C10D
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="aie.f.gz">aie.f</A><MENU>
+<LI><EM>for: </EM>Calculate the Airy function for a negative argument and an
+<LI><EM>gams: </EM>C10D
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="albeta.f.gz">albeta.f</A><MENU>
+<LI><EM>for: </EM>Compute the natural logarithm of the complete Beta
+<LI><EM>gams: </EM>C7B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="algams.f.gz">algams.f</A><MENU>
+<LI><EM>for: </EM>Compute the logarithm of the absolute value of the Gamma
+<LI><EM>gams: </EM>C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="ali.f.gz">ali.f</A><MENU>
+<LI><EM>for: </EM>Compute the logarithmic integral.
+<LI><EM>gams: </EM>C5
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="alngam.f.gz">alngam.f</A><MENU>
+<LI><EM>for: </EM>Compute the logarithm of the absolute value of the Gamma
+<LI><EM>gams: </EM>C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="alnrel.f.gz">alnrel.f</A><MENU>
+<LI><EM>for: </EM>Evaluate ln(1+X) accurate in the sense of relative error.
+<LI><EM>gams: </EM>C4B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="asinh.f.gz">asinh.f</A><MENU>
+<LI><EM>for: </EM>Compute the arc hyperbolic sine.
+<LI><EM>gams: </EM>C4C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="atanh.f.gz">atanh.f</A><MENU>
+<LI><EM>for: </EM>Compute the arc hyperbolic tangent.
+<LI><EM>gams: </EM>C4C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="besi0.f.gz">besi0.f</A><MENU>
+<LI><EM>for: </EM>Compute the hyperbolic Bessel function of the first kind
+<LI><EM>gams: </EM>C10B1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="besi0e.f.gz">besi0e.f</A><MENU>
+<LI><EM>for: </EM>Compute the exponentially scaled modified (hyperbolic)
+<LI><EM>gams: </EM>C10B1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="besi1.f.gz">besi1.f</A><MENU>
+<LI><EM>for: </EM>Compute the modified (hyperbolic) Bessel function of the
+<LI><EM>gams: </EM>C10B1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="besi1e.f.gz">besi1e.f</A><MENU>
+<LI><EM>for: </EM>Compute the exponentially scaled modified (hyperbolic)
+<LI><EM>gams: </EM>C10B1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="besj0.f.gz">besj0.f</A><MENU>
+<LI><EM>for: </EM>Compute the Bessel function of the first kind of order
+<LI><EM>gams: </EM>C10A1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="besj1.f.gz">besj1.f</A><MENU>
+<LI><EM>for: </EM>Compute the Bessel function of the first kind of order one.
+<LI><EM>gams: </EM>C10A1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="besk0.f.gz">besk0.f</A><MENU>
+<LI><EM>for: </EM>Compute the modified (hyperbolic) Bessel function of the
+<LI><EM>gams: </EM>C10B1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="besk0e.f.gz">besk0e.f</A><MENU>
+<LI><EM>for: </EM>Compute the exponentially scaled modified (hyperbolic)
+<LI><EM>gams: </EM>C10B1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="besk1.f.gz">besk1.f</A><MENU>
+<LI><EM>for: </EM>Compute the modified (hyperbolic) Bessel function of the
+<LI><EM>gams: </EM>C10B1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="besk1e.f.gz">besk1e.f</A><MENU>
+<LI><EM>for: </EM>Compute the exponentially scaled modified (hyperbolic)
+<LI><EM>gams: </EM>C10B1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="beskes.f.gz">beskes.f</A><MENU>
+<LI><EM>for: </EM>Compute a sequence of exponentially scaled modified Bessel
+<LI><EM>gams: </EM>C10B3
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="besks.f.gz">besks.f</A><MENU>
+<LI><EM>for: </EM>Compute a sequence of modified Bessel functions of the
+<LI><EM>gams: </EM>C10B3
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="besy0.f.gz">besy0.f</A><MENU>
+<LI><EM>for: </EM>Compute the Bessel function of the second kind of order
+<LI><EM>gams: </EM>C10A1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="besy1.f.gz">besy1.f</A><MENU>
+<LI><EM>for: </EM>Compute the Bessel function of the second kind of order
+<LI><EM>gams: </EM>C10A1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="beta.f.gz">beta.f</A><MENU>
+<LI><EM>for: </EM>Compute the complete Beta function.
+<LI><EM>gams: </EM>C7B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="betai.f.gz">betai.f</A><MENU>
+<LI><EM>for: </EM>Calculate the incomplete Beta function.
+<LI><EM>gams: </EM>C7F
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="bi.f.gz">bi.f</A><MENU>
+<LI><EM>for: </EM>Evaluate the Bairy function (the Airy function of the
+<LI><EM>gams: </EM>C10D
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="bie.f.gz">bie.f</A><MENU>
+<LI><EM>for: </EM>Calculate the Bairy function for a negative argument and an
+<LI><EM>gams: </EM>C10D
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="binom.f.gz">binom.f</A><MENU>
+<LI><EM>for: </EM>Compute the binomial coefficients.
+<LI><EM>gams: </EM>C1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="c0lgmc.f.gz">c0lgmc.f</A><MENU>
+<LI><EM>for: </EM>Evaluate (Z+0.5)*LOG((Z+1.)/Z) - 1.0 with relative
+<LI><EM>gams: </EM>C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="c9lgmc.f.gz">c9lgmc.f</A><MENU>
+<LI><EM>for: </EM>Compute the log gamma correction factor so that
+<LI><EM>gams: </EM>C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="c9ln2r.f.gz">c9ln2r.f</A><MENU>
+<LI><EM>for: </EM>Evaluate LOG(1+Z) from second order relative accuracy so
+<LI><EM>gams: </EM>C4B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="cacos.f.gz">cacos.f</A><MENU>
+<LI><EM>for: </EM>Compute the complex arc cosine.
+<LI><EM>gams: </EM>C4A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="cacosh.f.gz">cacosh.f</A><MENU>
+<LI><EM>for: </EM>Compute the arc hyperbolic cosine.
+<LI><EM>gams: </EM>C4C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="carg.f.gz">carg.f</A><MENU>
+<LI><EM>for: </EM>Compute the argument of a complex number.
+<LI><EM>gams: </EM>A4A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="casin.f.gz">casin.f</A><MENU>
+<LI><EM>for: </EM>Compute the complex arc sine.
+<LI><EM>gams: </EM>C4A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="casinh.f.gz">casinh.f</A><MENU>
+<LI><EM>for: </EM>Compute the arc hyperbolic sine.
+<LI><EM>gams: </EM>C4C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="catan.f.gz">catan.f</A><MENU>
+<LI><EM>for: </EM>Compute the complex arc tangent.
+<LI><EM>gams: </EM>C4A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="catan2.f.gz">catan2.f</A><MENU>
+<LI><EM>for: </EM>Compute the complex arc tangent in the proper quadrant.
+<LI><EM>gams: </EM>C4A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="catanh.f.gz">catanh.f</A><MENU>
+<LI><EM>for: </EM>Compute the arc hyperbolic tangent.
+<LI><EM>gams: </EM>C4C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="cbeta.f.gz">cbeta.f</A><MENU>
+<LI><EM>for: </EM>Compute the complete Beta function.
+<LI><EM>gams: </EM>C7B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="cbrt.f.gz">cbrt.f</A><MENU>
+<LI><EM>for: </EM>Compute the cube root.
+<LI><EM>gams: </EM>C2
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="ccbrt.f.gz">ccbrt.f</A><MENU>
+<LI><EM>for: </EM>Compute the cube root.
+<LI><EM>gams: </EM>C2
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="ccosh.f.gz">ccosh.f</A><MENU>
+<LI><EM>for: </EM>Compute the complex hyperbolic cosine.
+<LI><EM>gams: </EM>C4C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="ccot.f.gz">ccot.f</A><MENU>
+<LI><EM>for: </EM>Compute the cotangent.
+<LI><EM>gams: </EM>C4A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="cexprl.f.gz">cexprl.f</A><MENU>
+<LI><EM>for: </EM>Calculate the relative error exponential (EXP(X)-1)/X.
+<LI><EM>gams: </EM>C4B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="cgamma.f.gz">cgamma.f</A><MENU>
+<LI><EM>for: </EM>Compute the complete Gamma function.
+<LI><EM>gams: </EM>C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="cgamr.f.gz">cgamr.f</A><MENU>
+<LI><EM>for: </EM>Compute the reciprocal of the Gamma function.
+<LI><EM>gams: </EM>C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="chu.f.gz">chu.f</A><MENU>
+<LI><EM>for: </EM>Compute the logarithmic confluent hypergeometric function.
+<LI><EM>gams: </EM>C11
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="clbeta.f.gz">clbeta.f</A><MENU>
+<LI><EM>for: </EM>Compute the natural logarithm of the complete Beta
+<LI><EM>gams: </EM>C7B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="clngam.f.gz">clngam.f</A><MENU>
+<LI><EM>for: </EM>Compute the logarithm of the absolute value of the Gamma
+<LI><EM>gams: </EM>C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="clnrel.f.gz">clnrel.f</A><MENU>
+<LI><EM>for: </EM>Evaluate ln(1+X) accurate in the sense of relative error.
+<LI><EM>gams: </EM>C4B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="clog10.f.gz">clog10.f</A><MENU>
+<LI><EM>for: </EM>Compute the principal value of the complex base 10
+<LI><EM>gams: </EM>C4B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="cosdg.f.gz">cosdg.f</A><MENU>
+<LI><EM>for: </EM>Compute the cosine of an argument in degrees.
+<LI><EM>gams: </EM>C4A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="cot.f.gz">cot.f</A><MENU>
+<LI><EM>for: </EM>Compute the cotangent.
+<LI><EM>gams: </EM>C4A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="cpsi.f.gz">cpsi.f</A><MENU>
+<LI><EM>for: </EM>Compute the Psi (or Digamma) function.
+<LI><EM>gams: </EM>C7C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="csevl.f.gz">csevl.f</A><MENU>
+<LI><EM>for: </EM>Evaluate a Chebyshev series.
+<LI><EM>gams: </EM>C3A2
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="csinh.f.gz">csinh.f</A><MENU>
+<LI><EM>for: </EM>Compute the complex hyperbolic sine.
+<LI><EM>gams: </EM>C4C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="ctan.f.gz">ctan.f</A><MENU>
+<LI><EM>for: </EM>Compute the complex tangent.
+<LI><EM>gams: </EM>C4A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="ctanh.f.gz">ctanh.f</A><MENU>
+<LI><EM>for: </EM>Compute the complex hyperbolic tangent.
+<LI><EM>gams: </EM>C4C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="d9aimp.f.gz">d9aimp.f</A><MENU>
+<LI><EM>for: </EM>Evaluate the Airy modulus and phase.
+<LI><EM>gams: </EM>C10D
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="d9atn1.f.gz">d9atn1.f</A><MENU>
+<LI><EM>for: </EM>Evaluate DATAN(X) from first order relative accuracy so
+<LI><EM>gams: </EM>C4A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="d9b0mp.f.gz">d9b0mp.f</A><MENU>
+<LI><EM>for: </EM>Evaluate the modulus and phase for the J0 and Y0 Bessel
+<LI><EM>gams: </EM>C10A1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="d9b1mp.f.gz">d9b1mp.f</A><MENU>
+<LI><EM>for: </EM>Evaluate the modulus and phase for the J1 and Y1 Bessel
+<LI><EM>gams: </EM>C10A1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="d9chu.f.gz">d9chu.f</A><MENU>
+<LI><EM>for: </EM>Evaluate for large Z  Z**A * U(A,B,Z) where U is the
+<LI><EM>gams: </EM>C11
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="d9gmic.f.gz">d9gmic.f</A><MENU>
+<LI><EM>for: </EM>Compute the complementary incomplete Gamma function for A
+<LI><EM>gams: </EM>C7E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="d9gmit.f.gz">d9gmit.f</A><MENU>
+<LI><EM>for: </EM>Compute Tricomi's incomplete Gamma function for small
+<LI><EM>gams: </EM>C7E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="d9knus.f.gz">d9knus.f</A><MENU>
+<LI><EM>for: </EM>Compute Bessel functions EXP(X)*K-SUB-XNU(X) and EXP(X)*
+<LI><EM>gams: </EM>C10B3
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="d9lgic.f.gz">d9lgic.f</A><MENU>
+<LI><EM>for: </EM>Compute the log complementary incomplete Gamma function
+<LI><EM>gams: </EM>C7E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="d9lgit.f.gz">d9lgit.f</A><MENU>
+<LI><EM>for: </EM>Compute the logarithm of Tricomi's incomplete Gamma
+<LI><EM>gams: </EM>C7E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="d9lgmc.f.gz">d9lgmc.f</A><MENU>
+<LI><EM>for: </EM>Compute the log Gamma correction factor so that
+<LI><EM>gams: </EM>C7E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="d9ln2r.f.gz">d9ln2r.f</A><MENU>
+<LI><EM>for: </EM>Evaluate LOG(1+X) from second order relative accuracy so
+<LI><EM>gams: </EM>C4B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="d9pak.f.gz">d9pak.f</A><MENU>
+<LI><EM>for: </EM>Pack a base 2 exponent into a floating point number.
+<LI><EM>gams: </EM>A6B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="d9upak.f.gz">d9upak.f</A><MENU>
+<LI><EM>for: </EM>Unpack a floating point number X so that X = Y*2**N.
+<LI><EM>gams: </EM>A6B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dacosh.f.gz">dacosh.f</A><MENU>
+<LI><EM>for: </EM>Compute the arc hyperbolic cosine.
+<LI><EM>gams: </EM>C4C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dai.f.gz">dai.f</A><MENU>
+<LI><EM>for: </EM>Evaluate the Airy function.
+<LI><EM>gams: </EM>C10D
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="daie.f.gz">daie.f</A><MENU>
+<LI><EM>for: </EM>Calculate the Airy function for a negative argument and an
+<LI><EM>gams: </EM>C10D
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dasinh.f.gz">dasinh.f</A><MENU>
+<LI><EM>for: </EM>Compute the arc hyperbolic sine.
+<LI><EM>gams: </EM>C4C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="datanh.f.gz">datanh.f</A><MENU>
+<LI><EM>for: </EM>Compute the arc hyperbolic tangent.
+<LI><EM>gams: </EM>C4C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="daws.f.gz">daws.f</A><MENU>
+<LI><EM>for: </EM>Compute Dawson's function.
+<LI><EM>gams: </EM>C8C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbesi0.f.gz">dbesi0.f</A><MENU>
+<LI><EM>for: </EM>Compute the hyperbolic Bessel function of the first kind
+<LI><EM>gams: </EM>C10B1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbesi1.f.gz">dbesi1.f</A><MENU>
+<LI><EM>for: </EM>Compute the modified (hyperbolic) Bessel function of the
+<LI><EM>gams: </EM>C10B1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbesj0.f.gz">dbesj0.f</A><MENU>
+<LI><EM>for: </EM>Compute the Bessel function of the first kind of order
+<LI><EM>gams: </EM>C10A1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbesj1.f.gz">dbesj1.f</A><MENU>
+<LI><EM>for: </EM>Compute the Bessel function of the first kind of order one.
+<LI><EM>gams: </EM>C10A1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbesk0.f.gz">dbesk0.f</A><MENU>
+<LI><EM>for: </EM>Compute the modified (hyperbolic) Bessel function of the
+<LI><EM>gams: </EM>C10B1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbesk1.f.gz">dbesk1.f</A><MENU>
+<LI><EM>for: </EM>Compute the modified (hyperbolic) Bessel function of the
+<LI><EM>gams: </EM>C10B1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbesks.f.gz">dbesks.f</A><MENU>
+<LI><EM>for: </EM>Compute a sequence of modified Bessel functions of the
+<LI><EM>gams: </EM>C10B3
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbesy0.f.gz">dbesy0.f</A><MENU>
+<LI><EM>for: </EM>Compute the Bessel function of the second kind of order
+<LI><EM>gams: </EM>C10A1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbesy1.f.gz">dbesy1.f</A><MENU>
+<LI><EM>for: </EM>Compute the Bessel function of the second kind of order
+<LI><EM>gams: </EM>C10A1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbeta.f.gz">dbeta.f</A><MENU>
+<LI><EM>for: </EM>Compute the complete Beta function.
+<LI><EM>gams: </EM>C7B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbetai.f.gz">dbetai.f</A><MENU>
+<LI><EM>for: </EM>Calculate the incomplete Beta function.
+<LI><EM>gams: </EM>C7F
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbi.f.gz">dbi.f</A><MENU>
+<LI><EM>for: </EM>Evaluate the Bairy function (the Airy function of the
+<LI><EM>gams: </EM>C10D
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbie.f.gz">dbie.f</A><MENU>
+<LI><EM>for: </EM>Calculate the Bairy function for a negative argument and an
+<LI><EM>gams: </EM>C10D
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbinom.f.gz">dbinom.f</A><MENU>
+<LI><EM>for: </EM>Compute the binomial coefficients.
+<LI><EM>gams: </EM>C1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbsi0e.f.gz">dbsi0e.f</A><MENU>
+<LI><EM>for: </EM>Compute the exponentially scaled modified (hyperbolic)
+<LI><EM>gams: </EM>C10B1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbsi1e.f.gz">dbsi1e.f</A><MENU>
+<LI><EM>for: </EM>Compute the exponentially scaled modified (hyperbolic)
+<LI><EM>gams: </EM>C10B1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbsk0e.f.gz">dbsk0e.f</A><MENU>
+<LI><EM>for: </EM>Compute the exponentially scaled modified (hyperbolic)
+<LI><EM>gams: </EM>C10B1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbsk1e.f.gz">dbsk1e.f</A><MENU>
+<LI><EM>for: </EM>Compute the exponentially scaled modified (hyperbolic)
+<LI><EM>gams: </EM>C10B1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dbskes.f.gz">dbskes.f</A><MENU>
+<LI><EM>for: </EM>Compute a sequence of exponentially scaled modified Bessel
+<LI><EM>gams: </EM>C10B3
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dcbrt.f.gz">dcbrt.f</A><MENU>
+<LI><EM>for: </EM>Compute the cube root.
+<LI><EM>gams: </EM>C2
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dchu.f.gz">dchu.f</A><MENU>
+<LI><EM>for: </EM>Compute the logarithmic confluent hypergeometric function.
+<LI><EM>gams: </EM>C11
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dcosdg.f.gz">dcosdg.f</A><MENU>
+<LI><EM>for: </EM>Compute the cosine of an argument in degrees.
+<LI><EM>gams: </EM>C4A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dcot.f.gz">dcot.f</A><MENU>
+<LI><EM>for: </EM>Compute the cotangent.
+<LI><EM>gams: </EM>C4A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dcsevl.f.gz">dcsevl.f</A><MENU>
+<LI><EM>for: </EM>Evaluate a Chebyshev series.
+<LI><EM>gams: </EM>C3A2
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="ddaws.f.gz">ddaws.f</A><MENU>
+<LI><EM>for: </EM>Compute Dawson's function.
+<LI><EM>gams: </EM>C8C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="de1.f.gz">de1.f</A><MENU>
+<LI><EM>for: </EM>Compute the exponential integral E1(X).
+<LI><EM>gams: </EM>C5
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dei.f.gz">dei.f</A><MENU>
+<LI><EM>for: </EM>Compute the exponential integral Ei(X).
+<LI><EM>gams: </EM>C5
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="derf.f.gz">derf.f</A><MENU>
+<LI><EM>for: </EM>Compute the error function.
+<LI><EM>gams: </EM>C8A, L5A1E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="derfc.f.gz">derfc.f</A><MENU>
+<LI><EM>for: </EM>Compute the complementary error function.
+<LI><EM>gams: </EM>C8A, L5A1E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dexprl.f.gz">dexprl.f</A><MENU>
+<LI><EM>for: </EM>Calculate the relative error exponential (EXP(X)-1)/X.
+<LI><EM>gams: </EM>C4B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dfac.f.gz">dfac.f</A><MENU>
+<LI><EM>for: </EM>Compute the factorial function.
+<LI><EM>gams: </EM>C1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dgami.f.gz">dgami.f</A><MENU>
+<LI><EM>for: </EM>Evaluate the incomplete Gamma function.
+<LI><EM>gams: </EM>C7E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dgamic.f.gz">dgamic.f</A><MENU>
+<LI><EM>for: </EM>Calculate the complementary incomplete Gamma function.
+<LI><EM>gams: </EM>C7E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dgamit.f.gz">dgamit.f</A><MENU>
+<LI><EM>for: </EM>Calculate Tricomi's form of the incomplete Gamma function.
+<LI><EM>gams: </EM>C7E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dgamlm.f.gz">dgamlm.f</A><MENU>
+<LI><EM>for: </EM>Compute the minimum and maximum bounds for the argument in
+<LI><EM>gams: </EM>C7A, R2
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dgamma.f.gz">dgamma.f</A><MENU>
+<LI><EM>for: </EM>Compute the complete Gamma function.
+<LI><EM>gams: </EM>C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dgamr.f.gz">dgamr.f</A><MENU>
+<LI><EM>for: </EM>Compute the reciprocal of the Gamma function.
+<LI><EM>gams: </EM>C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dlbeta.f.gz">dlbeta.f</A><MENU>
+<LI><EM>for: </EM>Compute the natural logarithm of the complete Beta
+<LI><EM>gams: </EM>C7B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dlgams.f.gz">dlgams.f</A><MENU>
+<LI><EM>for: </EM>Compute the logarithm of the absolute value of the Gamma
+<LI><EM>gams: </EM>C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dli.f.gz">dli.f</A><MENU>
+<LI><EM>for: </EM>Compute the logarithmic integral.
+<LI><EM>gams: </EM>C5
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dlngam.f.gz">dlngam.f</A><MENU>
+<LI><EM>for: </EM>Compute the logarithm of the absolute value of the Gamma
+<LI><EM>gams: </EM>C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dlnrel.f.gz">dlnrel.f</A><MENU>
+<LI><EM>for: </EM>Evaluate ln(1+X) accurate in the sense of relative error.
+<LI><EM>gams: </EM>C4B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dpoch.f.gz">dpoch.f</A><MENU>
+<LI><EM>for: </EM>Evaluate a generalization of Pochhammer's symbol.
+<LI><EM>gams: </EM>C1, C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dpoch1.f.gz">dpoch1.f</A><MENU>
+<LI><EM>for: </EM>Calculate a generalization of Pochhammer's symbol starting
+<LI><EM>gams: </EM>C1, C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dpsi.f.gz">dpsi.f</A><MENU>
+<LI><EM>for: </EM>Compute the Psi (or Digamma) function.
+<LI><EM>gams: </EM>C7C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dsindg.f.gz">dsindg.f</A><MENU>
+<LI><EM>for: </EM>Compute the sine of an argument in degrees.
+<LI><EM>gams: </EM>C4A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="dspenc.f.gz">dspenc.f</A><MENU>
+<LI><EM>for: </EM>Compute a form of Spence's integral due to K. Mitchell.
+<LI><EM>gams: </EM>C5
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="e1.f.gz">e1.f</A><MENU>
+<LI><EM>for: </EM>Compute the exponential integral E1(X).
+<LI><EM>gams: </EM>C5
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="ei.f.gz">ei.f</A><MENU>
+<LI><EM>for: </EM>Compute the exponential integral Ei(X).
+<LI><EM>gams: </EM>C5
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="erf.f.gz">erf.f</A><MENU>
+<LI><EM>for: </EM>Compute the error function.
+<LI><EM>gams: </EM>C8A, L5A1E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="erfc.f.gz">erfc.f</A><MENU>
+<LI><EM>for: </EM>Compute the complementary error function.
+<LI><EM>gams: </EM>C8A, L5A1E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="exprel.f.gz">exprel.f</A><MENU>
+<LI><EM>for: </EM>Calculate the relative error exponential (EXP(X)-1)/X.
+<LI><EM>gams: </EM>C4B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="fac.f.gz">fac.f</A><MENU>
+<LI><EM>for: </EM>Compute the factorial function.
+<LI><EM>gams: </EM>C1
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="gami.f.gz">gami.f</A><MENU>
+<LI><EM>for: </EM>Evaluate the incomplete Gamma function.
+<LI><EM>gams: </EM>C7E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="gamic.f.gz">gamic.f</A><MENU>
+<LI><EM>for: </EM>Calculate the complementary incomplete Gamma function.
+<LI><EM>gams: </EM>C7E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="gamit.f.gz">gamit.f</A><MENU>
+<LI><EM>for: </EM>Calculate Tricomi's form of the incomplete Gamma function.
+<LI><EM>gams: </EM>C7E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="gamlim.f.gz">gamlim.f</A><MENU>
+<LI><EM>for: </EM>Compute the minimum and maximum bounds for the argument in
+<LI><EM>gams: </EM>C7A, R2
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="gamma.f.gz">gamma.f</A><MENU>
+<LI><EM>for: </EM>Compute the complete Gamma function.
+<LI><EM>gams: </EM>C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="gamr.f.gz">gamr.f</A><MENU>
+<LI><EM>for: </EM>Compute the reciprocal of the Gamma function.
+<LI><EM>gams: </EM>C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="initds.f.gz">initds.f</A><MENU>
+<LI><EM>for: </EM>Determine the number of terms needed in an orthogonal
+<LI><EM>gams: </EM>C3A2
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="inits.f.gz">inits.f</A><MENU>
+<LI><EM>for: </EM>Determine the number of terms needed in an orthogonal
+<LI><EM>gams: </EM>C3A2
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="poch.f.gz">poch.f</A><MENU>
+<LI><EM>for: </EM>Evaluate a generalization of Pochhammer's symbol.
+<LI><EM>gams: </EM>C1, C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="poch1.f.gz">poch1.f</A><MENU>
+<LI><EM>for: </EM>Calculate a generalization of Pochhammer's symbol starting
+<LI><EM>gams: </EM>C1, C7A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="psi.f.gz">psi.f</A><MENU>
+<LI><EM>for: </EM>Compute the Psi (or Digamma) function.
+<LI><EM>gams: </EM>C7C
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="r9aimp.f.gz">r9aimp.f</A><MENU>
+<LI><EM>for: </EM>Evaluate the Airy modulus and phase.
+<LI><EM>gams: </EM>C10D
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="r9atn1.f.gz">r9atn1.f</A><MENU>
+<LI><EM>for: </EM>Evaluate ATAN(X) from first order relative accuracy so that
+<LI><EM>gams: </EM>C4A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="r9chu.f.gz">r9chu.f</A><MENU>
+<LI><EM>for: </EM>Evaluate for large Z  Z**A * U(A,B,Z) where U is the
+<LI><EM>gams: </EM>C11
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="r9gmic.f.gz">r9gmic.f</A><MENU>
+<LI><EM>for: </EM>Compute the complementary incomplete Gamma function for A
+<LI><EM>gams: </EM>C7E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="r9gmit.f.gz">r9gmit.f</A><MENU>
+<LI><EM>for: </EM>Compute Tricomi's incomplete Gamma function for small
+<LI><EM>gams: </EM>C7E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="r9knus.f.gz">r9knus.f</A><MENU>
+<LI><EM>for: </EM>Compute Bessel functions EXP(X)*K-SUB-XNU(X) and EXP(X)*
+<LI><EM>gams: </EM>C10B3
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="r9lgic.f.gz">r9lgic.f</A><MENU>
+<LI><EM>for: </EM>Compute the log complementary incomplete Gamma function
+<LI><EM>gams: </EM>C7E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="r9lgit.f.gz">r9lgit.f</A><MENU>
+<LI><EM>for: </EM>Compute the logarithm of Tricomi's incomplete Gamma
+<LI><EM>gams: </EM>C7E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="r9lgmc.f.gz">r9lgmc.f</A><MENU>
+<LI><EM>for: </EM>Compute the log Gamma correction factor so that
+<LI><EM>gams: </EM>C7E
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="r9ln2r.f.gz">r9ln2r.f</A><MENU>
+<LI><EM>for: </EM>Evaluate LOG(1+X) from second order relative accuracy so
+<LI><EM>gams: </EM>C4B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="r9pak.f.gz">r9pak.f</A><MENU>
+<LI><EM>for: </EM>Pack a base 2 exponent into a floating point number.
+<LI><EM>gams: </EM>A6B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="r9upak.f.gz">r9upak.f</A><MENU>
+<LI><EM>for: </EM>Unpack a floating point number X so that X = Y*2**N.
+<LI><EM>gams: </EM>A6B
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="rand.f.gz">rand.f</A><MENU>
+<LI><EM>for: </EM>Generate a uniformly distributed random number.
+<LI><EM>gams: </EM>L6A21
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="rgauss.f.gz">rgauss.f</A><MENU>
+<LI><EM>for: </EM>Generate a normally distributed (Gaussian) random number.
+<LI><EM>gams: </EM>L6A14
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="runif.f.gz">runif.f</A><MENU>
+<LI><EM>for: </EM>Generate a uniformly distributed random number.
+<LI><EM>gams: </EM>L6A21
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="sindg.f.gz">sindg.f</A><MENU>
+<LI><EM>for: </EM>Compute the sine of an argument in degrees.
+<LI><EM>gams: </EM>C4A
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<LI><EM>file: </EM><A HREF="spenc.f.gz">spenc.f</A><MENU>
+<LI><EM>for: </EM>Compute a form of Spence's integral due to K. Mitchell.
+<LI><EM>gams: </EM>C5
+<LI><EM>by: </EM>Fullerton, W., (LANL)
+</MENU>
+<P><LI><A HREF="http://netlib.bell-labs.com/netlib/bib/thesaurus.html">index help</A>
+</UL>
+<P><A HREF="http://netlib.bell-labs.com/netlib/bib/ericjack.html">Eric and Jack</EM>
+</BODY></HTML>
