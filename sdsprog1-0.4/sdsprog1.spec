@@ -39,3 +39,5 @@ make install
 /usr/local/bin/dscf
 
 /usr/local/bin/dsxfit
+
+/usr/local/bin/dsxy
