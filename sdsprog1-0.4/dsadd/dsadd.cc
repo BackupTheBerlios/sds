@@ -1,5 +1,6 @@
 #include <SharedData.h>
 #include <stdlib.h>
+#include <math.h>
 #include <errno.h>
 #include <getopt.h>
 #include <string.h>
@@ -19,7 +20,7 @@ static struct option const long_options[] = {
 	{0, 0, 0, 0}
 };
 
-char verstring[] = "$Id: dsadd.cc,v 1.1 2003/01/23 15:12:06 vstein Exp $";
+char verstring[] = "$Id: dsadd.cc,v 1.2 2004/02/08 21:19:23 vstein Exp $";
 
 extern char *program_invocation_short_name;
 
