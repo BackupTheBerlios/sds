@@ -352,36 +352,36 @@ void * xrealloc (void *ptr, size_t size)
 }
 
 char *progs[]={
-	{"dsIUfit"},
-	{"dsaco"},
-	{"dsdel"},
-	{"dseinige"},
-	{"dsfilter"},
-	{"dscf"},
-	{"dsfit"},
-	{"dsfunc"},
-	{"dsint"},
-	{"dspower"},
-	{"dssc"},
-	{"dssort"},
-	{"dsspline"},
-	{"dswl"}
+	"dsIUfit",
+	"dsaco",
+	"dsdel",
+	"dseinige",
+	"dsfilter",
+	"dscf",
+	"dsfit",
+	"dsfunc",
+	"dsint",
+	"dspower",
+	"dssc",
+	"dssort",
+	"dsspline",
+	"dswl"
 };
 
 char *need_R[]={
-	{"dsIUac"},
-	{"dsIUfit"},
-	{"dsIUheat"},
-	{"dsIUrad"},
-	{"dsIVac"},
-	{"dsIVacheat"},
-	{"dsIVfit"},
-	{"dsIVheat"},
-	{"dscf"},
-	{"dsfit"},
-	{"dspeak"},
-	{"dsspline"},
-	{"dswl"}
+	"dsIUac",
+	"dsIUfit",
+	"dsIUheat",
+	"dsIUrad",
+	"dsIVac",
+	"dsIVacheat",
+	"dsIVfit",
+	"dsIVheat",
+	"dscf",
+	"dsfit",
+	"dspeak",
+	"dsspline",
+	"dswl"
 };
 
 int exec_command(DshLine *dshlines, int n, int id)
@@ -444,8 +444,8 @@ int exec_command(DshLine *dshlines, int n, int id)
 }
 
 char *load_progs[]={
-	{"dsl"},
-	{"dssc"}
+	"dsl",
+	"dssc"
 };
 
 int exec_load_command(DshLine *dshlines, int n, const char *rname)
