@@ -4,10 +4,13 @@ CPPFLAGS=-Wall -D_GNU_SOURCE -g -I$(INCLUDE_DIR)
 #CPPFLAGS=-Wall -D_GNU_SOURCE -g
 #LDFLAGS=-g -L$(LIB_DIR) -L/usr/lib/termcap
 LDFLAGS=-g -L/usr/lib/termcap
-LOADLIBES= -lm -lfl -lsd -lfn -lapprox -lg2c -lreadline -ltermcap
+LOADLIBES= -lm -lfl -lstdc++ -lsd -lfn -lapprox -lg2c -lreadline -ltermcap
 
-YACC=bison
-YFLAGS=-d -y 
+# problem with bison V1.75
+#YACC=bison
+YACC=yacc
+#YFLAGS=-d -y 
+YFLAGS=-d 
 LEX=flex
 LFLAGS=
 
@@ -34,7 +37,9 @@ clean:
 dsfityacc.h: dsfityacc.c
 
 dsfityacc.c: dsfityacc.y
-	$(YACC) $(YFLAGS) -o $@ -pdsfit_yy $<
+	$(YACC) $(YFLAGS) -pdsfit_yy $<
+	mv y.tab.c $@
+	mv y.tab.h dsfityacc.h
 
 dsfityacc.o: dsfityacc.c
 	gcc -c $(CPPFLAGS) $(CFLAGS) -DYYDEBUG dsfityacc.c 
@@ -48,7 +53,9 @@ dsfitlex.o: dsfitlex.c
 dsscyacc.h: dsscyacc.c
 
 dsscyacc.c: dsscyacc.y
-	$(YACC) $(YFLAGS) -o $@ -pdssc_yy $<
+	$(YACC) $(YFLAGS) -pdssc_yy $<
+	mv y.tab.c $@
+	mv y.tab.h dsscyacc.h
 
 dsscyacc.o: dsscyacc.c
 	gcc -c $(CPPFLAGS) $(CFLAGS) -DYYDEBUG dsscyacc.c 
