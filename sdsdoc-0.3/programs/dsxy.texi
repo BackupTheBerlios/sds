@@ -1,0 +1,26 @@
+If you have two datasets with the same x-arrays, you might want to
+display the two like in the X-Y mode of an oscilloscope (where the
+common x-axis is the time).  That is, you want each datapoint to
+contain the two corresponding y-values.  @command{dsxy} does exactly
+this: 
+
+@example
+dsxy [-r|-R] IDs
+@end example
+
+There must be an even number of IDs, each pair of datasets has to 
+share their x-values.  The y-array of the first ID will be the new
+x-array.  The (mutually exclusive) options are:
+
+@table @code
+@item -r
+@itemx --replace_x
+The resulting dataset replaces the first dataset of the original pair.
+@item -R
+@itemx --replace_y
+The resulting dataset replaces the second dataset of the original pair.
+@end table
+
+If no option is specified, a new dataset is created. 
+
+
