@@ -26,38 +26,43 @@ static struct option const long_options[] =
 
 void warranty(void)
 {
-  printf("\
-  This program is free software; you can redistribute it and/or modify it 
-  under the terms of the GNU General Public License as published by the 
-  Free Software Foundation; either version 2 of the License, or (at your 
-  option) any later version.
-
-  This program is distributed in the hope that it will be useful, but 
-  WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License 
-  for more details.
-
-  You should have received a copy of the GNU General Public License along 
-  with this program; if not, write to the Free Software Foundation, Inc., 
-  59 Temple Place Suite 330, Boston, MA 02111-1307 USA.\n");
-
-  exit(0);
+	printf("This program is free software; you can redistribute it"
+               " and/or modify it\n"
+               "under the terms of the GNU General Public License as"
+	       " published by the \n"
+	       "Free Software Foundation; either version 2 of the License,"
+	       " or (at your \n"
+	       "option) any later version.\n"
+	       "\n"
+	       "This program is distributed in the hope that it will be"
+	       " useful, but \n"
+	       "WITHOUT ANY WARRANTY; without even the implied warranty of"
+	       " MERCHANTABILITY\n"
+	       "or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General"
+	       " Public License \n"
+	       "for more details.\n"
+	       "\n"
+	       "You should have received a copy of the GNU General Public"
+	       " License along \n"
+	       "with this program; if not, write to the Free Software"
+	       " Foundation, Inc., \n"
+	       "59 Temple Place Suite 330, Boston, MA 02111-1307 USA.\n");
+	exit(0);
 }
 
 void usage(void)
 {
-  fprintf(stderr,"\
-usage: %s [-o file][-x int][-y int]
+  fprintf(stderr,"usage: %s [-o file][-x int][-y int]\n\n"
 
-  -i,    --input         read input from file
-  -o,    --output        place output in file
-  -x,    --x             x values from column #n
-  -y,    --y             y values from column #n
-  -p,    --precision     specify precision of output 
-                         (0: use %%a in format string)
-  -h,-?, --help          this message
-  -v,    --version       display version information and exit.
-  -w,    --warranty      display licensing terms.\n", progname);
+"  -i,    --input         read input from file\n"
+"  -o,    --output        place output in file\n"
+"  -x,    --x             x values from column #n\n"
+"  -y,    --y             y values from column #n\n"
+"  -p,    --precision     specify precision of output\n" 
+"                         (0: use %%a in format string)\n"
+"  -h,-?, --help          this message\n"
+"  -v,    --version       display version information and exit.\n"
+"  -w,    --warranty      display licensing terms.\n", progname);
 
   exit(0);
 }
